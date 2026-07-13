@@ -1,0 +1,25 @@
+{
+  "torch": "2.5.1+cu124",
+  "cuda_build": "12.4",
+  "cuda_available": true,
+  "device_count": 1,
+  "visible": "1",
+  "device_name": "NVIDIA GeForce RTX 3090",
+  "capability": [
+    8,
+    6
+  ],
+  "capability_is_8_6": true,
+  "bf16_supported": true,
+  "matmul_dtype": "torch.bfloat16",
+  "matmul_shape": [
+    512,
+    512
+  ],
+  "matmul_finite": true,
+  "matmul_rel_err_vs_fp32": 0.0016553770983591676,
+  "matmul_ok": true,
+  "transformers": "4.46.3",
+  "transformers_automodel_import": true,
+  "ALL_OK": true
+}

@@ -1,0 +1,101 @@
+{
+  "run_id": "latency_Qwen2.5-1.5B",
+  "round": 4,
+  "model": "Qwen/Qwen2.5-1.5B",
+  "config": {
+    "batch_size": 8,
+    "warmup": 10,
+    "iters": 30,
+    "dtype": "bfloat16",
+    "seq_lens": [
+      512,
+      2048
+    ],
+    "seed": 42,
+    "use_cache": false,
+    "attention": "eager (no FlashAttention)",
+    "n_layers": 28,
+    "d_model": 1536,
+    "params_per_layer": {
+      "depth_ar": 1536,
+      "plain_skip": 0
+    },
+    "selection_rule": "residual_damage (Table-1 layer set)"
+  },
+  "hardware": "NVIDIA RTX 3090 24GB, BF16, no FlashAttention",
+  "eval": {
+    "corpus": "n/a (synthetic random token IDs; timing only)"
+  },
+  "skipped_layers": [
+    10,
+    12,
+    14,
+    16
+  ],
+  "metric": "prefill latency (NOT end-to-end generation latency)",
+  "by_seq_len": {
+    "512": {
+      "dense": {
+        "median_ms": 231.18947073817253,
+        "iqr_ms": 0.7316563278436661,
+        "p25_ms": 230.7222317904234,
+        "p75_ms": 231.45388811826706,
+        "min_ms": 229.36752066016197,
+        "max_ms": 232.01174847781658
+      },
+      "plain_skip": {
+        "median_ms": 201.28004625439644,
+        "iqr_ms": 0.25641173124313354,
+        "p25_ms": 201.21585950255394,
+        "p75_ms": 201.47227123379707,
+        "min_ms": 200.98659954965115,
+        "max_ms": 201.83247700333595
+      },
+      "depth_ar": {
+        "median_ms": 201.73535589128733,
+        "iqr_ms": 0.2834536135196686,
+        "p25_ms": 201.62116549909115,
+        "p75_ms": 201.90461911261082,
+        "min_ms": 201.43063366413116,
+        "max_ms": 202.43233628571033
+      },
+      "derived": {
+        "speedup_plain_vs_dense": 1.148596073184392,
+        "speedup_depth_ar_vs_dense": 1.1460037320515977,
+        "depth_ar_overhead_vs_plain_skip_pct": 0.22620704106726286
+      }
+    },
+    "2048": {
+      "dense": {
+        "median_ms": 904.6893697232008,
+        "iqr_ms": 1.1218711733818054,
+        "p25_ms": 904.1194412857294,
+        "p75_ms": 905.2413124591112,
+        "min_ms": 902.805021032691,
+        "max_ms": 906.4592812210321
+      },
+      "plain_skip": {
+        "median_ms": 794.7974475100636,
+        "iqr_ms": 0.8159540593624115,
+        "p25_ms": 794.3557221442461,
+        "p75_ms": 795.1716762036085,
+        "min_ms": 793.0199634283781,
+        "max_ms": 796.2529640644789
+      },
+      "depth_ar": {
+        "median_ms": 796.213704161346,
+        "iqr_ms": 0.7982663810253143,
+        "p25_ms": 795.8762887865305,
+        "p75_ms": 796.6745551675558,
+        "min_ms": 794.7719730436802,
+        "max_ms": 797.0983814448118
+      },
+      "derived": {
+        "speedup_plain_vs_dense": 1.1382640603054348,
+        "speedup_depth_ar_vs_dense": 1.1362393852239865,
+        "depth_ar_overhead_vs_plain_skip_pct": 0.17819089073815603
+      }
+    }
+  },
+  "status": "complete"
+}

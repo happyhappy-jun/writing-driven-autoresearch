@@ -1,0 +1,11 @@
+{
+  "name": "alin",
+  "description": "ALIN lab's shared Claude Code skills: document & writing (HWP/PPTX/LaTeX/Overleaf), literature & related-work tooling, peer review, experiment & HPC workflows (SLURM, W&B, audits), and developer tooling. Installs as one plugin; skills are namespaced /alin:<name>.",
+  "author": {
+    "name": "ALIN Lab",
+    "email": "totolacky@kaist.ac.kr"
+  },
+  "homepage": "https://github.com/alinlab/alin-skills",
+  "repository": "https://github.com/alinlab/alin-skills",
+  "license": "MIT"
+}

@@ -1,0 +1,22 @@
+\begin{abstract}
+Layer skipping reduces Transformer inference cost by deleting entire residual
+blocks, and the operator it uses implicitly assumes each deleted block's
+residual update is zero. It is not: much of that update is predictable from
+the updates preceding it. We introduce \textbf{Depth-AR} (Depth-wise
+AutoRegressive update prediction), which replaces a skipped block's update
+with a closed-form, per-channel autoregressive forecast computed from
+information already resident in the residual stream. The predictor is fitted
+on unlabeled text with no gradient training, stores $d$ coefficients per
+skipped block, and adds $0.64\%$ to prefill latency. Across Qwen2.5-0.5B,
+1.5B and 7B, Depth-AR recovers $4.6$--$23.3\%$ of the language-modelling
+damage skipping causes at light budgets, and up to $70.0\%$ when layers are
+chosen to maximize recovery. Downstream, the benefit is conditional on
+damage: at $28.6\%$ of blocks skipped on Qwen2.5-7B under a deployable
+selection rule, Depth-AR answers $89$ more questions correctly out of $900$
+than plain skipping ($z = 4.31$, one of four results surviving Bonferroni
+correction over all $63$ comparisons)---yet every significant gain occurs
+where plain skipping already costs at least $27.7$ accuracy points, and below
+that threshold all effects fall within the evaluation's own measured
+reproducibility floor. Severe damage is necessary, though not sufficient, for
+repair to pay off downstream: repair pays off where pruning bites.
+\end{abstract}

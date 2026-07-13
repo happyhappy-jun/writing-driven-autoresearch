@@ -1,0 +1,69 @@
+<svg width="960" height="460" viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d29922"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3fb950"/>
+    </marker>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="959" height="459" rx="16" fill="#0d1117" stroke="#30363d"/>
+
+  <text x="48" y="54" font-size="22" font-weight="700" fill="#e6edf3">Write the paper first. Then make it true.</text>
+  <text x="912" y="54" text-anchor="end" font-size="12" fill="#8b949e">136 decisions &#183; 795 checks &#183; submitted 33 min early</text>
+  <text x="48" y="80" font-size="13.5" fill="#8b949e">The writing-driven loop: a submittable draft existed at every minute of the 3-hour run.</text>
+
+  <!-- node 1: DRAFT -->
+  <rect x="48" y="112" width="186" height="104" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="62" y="140" font-size="13" font-weight="700" fill="#58a6ff">1 &#183; DRAFT</text>
+  <text x="62" y="164" font-size="12.5" fill="#c9d1d9">A complete, compiling</text>
+  <text x="62" y="182" font-size="12.5" fill="#c9d1d9">paper &#8212; every number</text>
+  <text x="62" y="200" font-size="12.5" fill="#c9d1d9">a marked guess <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#d29922">\ph{&#8230;}</tspan></text>
+
+  <!-- node 2: EXPERIMENT -->
+  <rect x="274" y="112" width="186" height="104" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="288" y="140" font-size="13" font-weight="700" fill="#58a6ff">2 &#183; EXPERIMENT</text>
+  <text x="288" y="164" font-size="12.5" fill="#c9d1d9">Run whatever fills the</text>
+  <text x="288" y="182" font-size="12.5" fill="#c9d1d9">biggest gap in the</text>
+  <text x="288" y="200" font-size="12.5" fill="#c9d1d9">current draft</text>
+
+  <!-- node 3: VERIFY -->
+  <rect x="500" y="112" width="186" height="104" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="514" y="140" font-size="13" font-weight="700" fill="#58a6ff">3 &#183; VERIFY</text>
+  <text x="514" y="164" font-size="12.5" fill="#c9d1d9">Check each value against</text>
+  <text x="514" y="182" font-size="12.5" fill="#c9d1d9">its result JSON on disk:</text>
+  <text x="514" y="200" font-size="12.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#79c0ff">verify-phm.py</text>
+
+  <!-- node 4: GATE -->
+  <rect x="726" y="112" width="186" height="104" rx="10" fill="#161b22" stroke="#30363d"/>
+  <text x="740" y="140" font-size="13" font-weight="700" fill="#58a6ff">4 &#183; GATE</text>
+  <text x="740" y="164" font-size="12.5" fill="#c9d1d9">Does the measured</text>
+  <text x="740" y="182" font-size="12.5" fill="#c9d1d9">number support the</text>
+  <text x="740" y="200" font-size="12.5" fill="#c9d1d9">storyline?</text>
+
+  <!-- arrows between nodes -->
+  <line x1="238" y1="164" x2="266" y2="164" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="464" y1="164" x2="492" y2="164" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="690" y1="164" x2="718" y2="164" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- yes branch -->
+  <line x1="846" y1="216" x2="846" y2="248" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <rect x="726" y="254" width="186" height="48" rx="8" fill="#0f2418" stroke="#2ea043"/>
+  <text x="740" y="274" font-size="12.5" fill="#c9d1d9">yes &#8594; unwrap to <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#3fb950">\phm{}</tspan></text>
+  <text x="740" y="292" font-size="12.5" fill="#3fb950">measured &#183; it ships</text>
+
+  <!-- no branch: loop back to DRAFT -->
+  <path d="M726,196 L700,196 L700,336 L141,336 L141,222" fill="none" stroke="#d29922" stroke-width="1.5" marker-end="url(#arrowAmber)"/>
+  <text x="420" y="326" text-anchor="middle" font-size="12.5" fill="#d29922">no &#8594; pivot the storyline (pre-committed pivots A&#8211;F: a paper story for every outcome)</text>
+
+  <!-- legend -->
+  <line x1="48" y1="368" x2="912" y2="368" stroke="#21262d"/>
+  <rect x="48" y="386" width="12" height="12" rx="3" fill="#d29922"/>
+  <text x="70" y="397" font-size="12.5" fill="#8b949e"><tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#d29922">\ph{}</tspan>&#160;&#160;invented &#8212; lands a real measured number or the sentence is deleted. Never ships.</text>
+  <rect x="48" y="414" width="12" height="12" rx="3" fill="#3fb950"/>
+  <text x="70" y="425" font-size="12.5" fill="#8b949e"><tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#3fb950">\phm{}</tspan>&#160;&#160;measured &#8212; backed by a named key in a result JSON on disk. Deleting it destroys a true claim.</text>
+</svg>

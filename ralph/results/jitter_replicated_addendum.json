@@ -1,0 +1,77 @@
+{
+  "run_id": "jitter_replicated_addendum",
+  "provenance": "Collected during the post-submission wrap-up window, AFTER the paper's significance accounting closed. Deliberately NOT folded into noise_audit.json, which remains exactly the shipped accounting (family=63, n=1 jitter estimate). Cite this file directly for the REPLICATED floor and state its wrap-up provenance in the text.",
+  "sources": [
+    "jitter_bf16.json",
+    "jitter_replication.json"
+  ],
+  "bf16_floor": {
+    "n_pairwise_comparisons": 21,
+    "max_questions": 6,
+    "mean_questions": 2.48,
+    "sd_questions": 1.62,
+    "questions_per_config": 900,
+    "max_accuracy_points": 0.67,
+    "nll_range": 0.0,
+    "setup": "Qwen2.5-1.5B bf16, 2 layer sets x 3 methods x 3 task batch shapes, 300 ex/task"
+  },
+  "fp32_floor": {
+    "n_pairwise_comparisons": 48,
+    "max_questions": 0,
+    "questions_per_config": 300,
+    "nll_range": 0.0,
+    "setup": "Qwen2.5-0.5B fp32, 6 configs x 3 task batch shapes, 100 ex/task",
+    "result": "EXACTLY ZERO. fp32 is bit-exact under batch reshaping."
+  },
+  "mechanism_confirmed": "The floor was predicted to arise from bf16 matmul reduction order changing with batch shape. That predicts zero jitter in fp32. fp32 measures exactly zero across 48 comparisons -- an out-of-sample confirmation of the mechanism.",
+  "scoping": "The floor is a BF16 phenomenon, not a property of the harness. fp32 results (all 0.5B cells) are exactly reproducible. bf16 results (1.5B/7B/Qwen3) carry a floor of mean 2.48, sd 1.62, max 6 questions of 900 (0.67 accuracy points).",
+  "survivors_vs_replicated_floor": {
+    "floor_questions": 6,
+    "note": "Every Bonferroni survivor recomputed against the REPLICATED bf16 max, not the n=1 estimate. All four clear it by an order of magnitude.",
+    "survivors": [
+      {
+        "model": "Qwen2.5-1.5B",
+        "selection": "recovery_top",
+        "k": 2,
+        "method": "depth_ar",
+        "net_questions": 132,
+        "total_questions": 900,
+        "z": 6.454324028579722,
+        "ratio_vs_bf16_floor": 22.0
+      },
+      {
+        "model": "Qwen2.5-1.5B",
+        "selection": "recovery_top",
+        "k": 4,
+        "method": "depth_ar",
+        "net_questions": 90,
+        "total_questions": 900,
+        "z": 4.373193674913827,
+        "ratio_vs_bf16_floor": 15.0
+      },
+      {
+        "model": "Qwen2.5-7B",
+        "selection": "residual_damage",
+        "k": 8,
+        "method": "depth_ar",
+        "net_questions": 89,
+        "total_questions": 900,
+        "z": 4.314174432935144,
+        "ratio_vs_bf16_floor": 14.8
+      },
+      {
+        "model": "Qwen2.5-7B",
+        "selection": "residual_damage",
+        "k": 8,
+        "method": "depth_ar_ct",
+        "net_questions": 74,
+        "total_questions": 900,
+        "z": 3.570673460835017,
+        "ratio_vs_bf16_floor": 12.3
+      }
+    ],
+    "min_ratio": 12.3,
+    "max_ratio": 22.0
+  },
+  "status": "complete"
+}

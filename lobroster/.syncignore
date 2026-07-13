@@ -1,0 +1,22 @@
+# Excluded from master -> worker rsync by /lobroster:code-sync.
+# Rule: code and configs travel; bytes that can be regenerated do not.
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+.ipynb_checkpoints/
+
+# Regenerable / large. Never pushed unless --with-data is passed explicitly.
+data/
+outputs/
+logs/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+*.npz
+*.npy
+wandb/
+.cache/

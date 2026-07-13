@@ -1,0 +1,88 @@
+{
+  "run_id": "r0_checks_0.5b_bf16",
+  "round": 0,
+  "model": "Qwen/Qwen2.5-0.5B",
+  "dtype": "bfloat16",
+  "device": "RTX 3090 (Ampere, sm_86) alin14",
+  "n_layers": 24,
+  "eligible_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "checks": {
+    "1_dense_equality": {
+      "pass": true,
+      "max_abs_logit_diff": 0.0,
+      "note": "bit-exact: dense path returns the block output untouched"
+    },
+    "2_alpha0_equals_plainskip": {
+      "pass": true,
+      "max_abs_logit_diff": 0.0,
+      "layers": [
+        5,
+        9,
+        13
+      ]
+    },
+    "3_manual_skip_matches": {
+      "pass": true,
+      "max_abs_logit_diff": 0.0,
+      "layer": 9
+    },
+    "4_boundary_capture": {
+      "pass": false,
+      "max_abs_err": 0.5,
+      "at_layer": 3,
+      "hidden_scale": 1704.0,
+      "tol": 0.1704
+    },
+    "5_padding_excluded": {
+      "pass": true,
+      "max_rel_acc_diff": 0.0,
+      "abs_nll_diff": 0.0,
+      "n_tokens_counted": 192.0,
+      "n_tokens_expected": 192,
+      "note": "pad slots scrambled; accumulators and NLL must not move"
+    },
+    "6_non_adjacent": {
+      "pass": true,
+      "selected": [
+        8,
+        10,
+        12,
+        14
+      ],
+      "gaps": [
+        2,
+        2,
+        2
+      ],
+      "min_gap_required": 2,
+      "excludes_layer0_and_last": true
+    }
+  },
+  "n_pass": 5,
+  "n_total": 6,
+  "status": "failed",
+  "notes": "BF16 on sm_86; dense/alpha0/manual-skip checks are bit-exact."
+}

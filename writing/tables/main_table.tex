@@ -1,0 +1,42 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{\textbf{Qwen2.5-7B, the deployable operating point.} Downstream quality at
+matched skipped-layer sets, layers chosen by measured residual damage, the deployable
+rule. Within each budget every predictor skips the \emph{identical} blocks (verified per
+run), so differences isolate the update predictor. NLL is lower-better, accuracies
+higher-better; the best value in each column within a budget is in \textbf{bold},
+whichever method attains it. \mname wins the NLL column at every budget and scale. On accuracy,
+\emph{at these light budgets} ($k \le 4$), no difference is statistically significant at any
+scale (largest $|z| = 1.18$, against a $95\%$ bar of $1.96$ and a Bonferroni bar of
+$3.35$). At heavier budgets the picture changes and the gains become significant
+(\Cref{sec:app-pareto}). The point estimates favour Plain Skip on 0.5B and \mname on 7B, and
+neither direction clears sampling noise. Gap recovered is the fraction of the
+Dense$\rightarrow$Plain Skip \emph{average-accuracy} drop a method restores, reported
+with its absolute count in parentheses, net correct answers against Plain Skip, out of
+300 graded on 0.5B and 900 on 1.5B and 7B. Read the count, not the fraction:
+7B $k{=}4$'s $+35.5\%$ is 22 answers, and is not significant
+(\Cref{sec:app-noise}). An empty cell means not applicable: Dense is the reference, and
+Plain Skip is $0$ by construction. Hardware and protocol: \Cref{sec:app-protocol}.}
+\label{tab:main}
+\begin{tabular}{llcccccc}
+\toprule
+Method & $k/L$ & WikiText-2 NLL $\downarrow$ & HellaSwag $\uparrow$ & PIQA $\uparrow$ & ARC-E $\uparrow$ & Avg. $\uparrow$ & Gap rec. $\uparrow$ \\
+\midrule
+\multicolumn{8}{c}{\textit{\cellcolor[HTML]{EFEFEF}Qwen2.5-7B ($L=28$)}} \\
+\midrule
+Dense                  & 0/28 & 1.98 & 80.0 & 79.7 & 78.7 & 79.4 & \\
+\graymidrule
+Plain Skip             & 2/28 & 2.12 & 73.7 & \textbf{78.3} & 71.0 & 74.3 &  \\
+Copy Update            & 2/28 & 2.29 & 68.3 & 73.7 & 59.0 & 67.0 & -143.5\%\ (-66) \\
+Scalar AR(1)           & 2/28 & 2.12 & \textbf{74.0} & \textbf{78.3} & 71.3 & 74.6 & +4.3\%\ (+2) \\
+\textbf{\mname (Ours)} & 2/28 & \textbf{2.11} & 73.0 & 78.0 & \textbf{73.3} & \textbf{74.8} & +8.7\%\ (+4) \\
+\graymidrule
+Plain Skip             & 4/28 & 2.38 & 69.0 & 75.7 & 73.0 & 72.6 &  \\
+Copy Update            & 4/28 & 2.95 & 58.7 & 68.7 & 53.0 & 60.1 & -180.6\%\ (-112) \\
+Scalar AR(1)           & 4/28 & 2.36 & 67.7 & \textbf{78.0} & 73.7 & 73.1 & +8.1\%\ (+5) \\
+\textbf{\mname (Ours)} & 4/28 & \textbf{2.29} & \textbf{70.3} & 77.3 & \textbf{77.3} & \textbf{75.0} & +35.5\%\ (+22) \\
+\bottomrule
+\end{tabular}
+\end{table}

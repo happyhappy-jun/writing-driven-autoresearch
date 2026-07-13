@@ -1,0 +1,15 @@
+{
+  "name": "alin-skills",
+  "description": "ALIN lab's shared Claude Code skills, distributed as the single `alin` plugin.",
+  "owner": {
+    "name": "ALIN Lab",
+    "email": "totolacky@kaist.ac.kr"
+  },
+  "plugins": [
+    {
+      "name": "alin",
+      "source": ".",
+      "description": "ALIN lab's shared Claude Code skills, packaged as a single plugin. Skills are namespaced /alin:<name>."
+    }
+  ]
+}

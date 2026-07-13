@@ -1,0 +1,299 @@
+{
+  "run_id": "damage_axis",
+  "round": 5,
+  "thesis": "Depth-AR recovers quality in proportion to what plain skipping destroys. The two regimes are separated by DAMAGE, not by selection rule.",
+  "spearman_acc_damage_vs_acc_gain": {
+    "rho": 0.46789870390498584,
+    "p_value": 0.012042975002791436,
+    "n": 28
+  },
+  "spearman_nll_damage_vs_nll_gain": {
+    "rho": 0.8204707170224411,
+    "p_value": 9.018038530939034e-08,
+    "n": 28
+  },
+  "rows": [
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "residual_damage",
+      "k": 4,
+      "damage_acc": 0.06333333333333346,
+      "gain_acc": -0.013333333333333308,
+      "damage_nll": 0.6582610120948296,
+      "gain_nll": 0.029964331371243436
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "residual_damage",
+      "k": 6,
+      "damage_acc": 0.13000000000000017,
+      "gain_acc": -0.019999999999999907,
+      "damage_nll": 1.6895951999885312,
+      "gain_nll": 0.3035778582092963
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "ct_recovery_top",
+      "k": 2,
+      "damage_acc": 0.19333333333333347,
+      "gain_acc": 0.07666666666666672,
+      "damage_nll": 3.82739887197636,
+      "gain_nll": 2.1539603975941555
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "ct_recovery_top",
+      "k": 4,
+      "damage_acc": 0.22333333333333344,
+      "gain_acc": 0.053333333333333344,
+      "damage_nll": 6.814630112739781,
+      "gain_nll": 3.7292170707582173
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "residual_damage",
+      "k": 1,
+      "damage_acc": 0.06666666666666676,
+      "gain_acc": -0.0033333333333332993,
+      "damage_nll": 0.09974608254761907,
+      "gain_nll": 0.007513240942412125
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "residual_damage",
+      "k": 10,
+      "damage_acc": 0.2666666666666668,
+      "gain_acc": 0.016666666666666663,
+      "damage_nll": 7.530744202307971,
+      "gain_nll": 3.2062699809418254
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "residual_damage",
+      "k": 2,
+      "damage_acc": 0.06000000000000005,
+      "gain_acc": -0.01666666666666672,
+      "damage_nll": 0.22235188997815758,
+      "gain_nll": 0.018661514168385906
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "residual_damage",
+      "k": 8,
+      "damage_acc": 0.23666666666666686,
+      "gain_acc": 0.016666666666666774,
+      "damage_nll": 3.1718519878093963,
+      "gain_nll": 0.9917270986962397
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "recovery_top",
+      "k": 2,
+      "damage_acc": 0.19333333333333347,
+      "gain_acc": 0.07666666666666672,
+      "damage_nll": 3.8274004481972144,
+      "gain_nll": 2.1539652185867597
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "recovery_top",
+      "k": 4,
+      "damage_acc": 0.23333333333333345,
+      "gain_acc": 0.016666666666666607,
+      "damage_nll": 6.604089711399349,
+      "gain_nll": 3.627601616117153
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "recovery_top",
+      "k": 6,
+      "damage_acc": 0.22000000000000008,
+      "gain_acc": 0.006666666666666654,
+      "damage_nll": 9.14642832736159,
+      "gain_nll": 5.324447120405659
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "selection": "residual_damage",
+      "k": 2,
+      "damage_acc": 0.02111111111111097,
+      "gain_acc": 0.0033333333333332993,
+      "damage_nll": 0.1392386455047867,
+      "gain_nll": 0.011445261804663431
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "selection": "residual_damage",
+      "k": 4,
+      "damage_acc": 0.06999999999999995,
+      "gain_acc": -0.004444444444444362,
+      "damage_nll": 0.42186639212242794,
+      "gain_nll": 0.043421658958725295
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "recovery_top",
+      "k": 10,
+      "damage_acc": 0.2733333333333335,
+      "gain_acc": 0.07,
+      "damage_nll": 9.892171348946944,
+      "gain_nll": 1.6085405994671191
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "recovery_top",
+      "k": 8,
+      "damage_acc": 0.1966666666666667,
+      "gain_acc": -0.006666666666666765,
+      "damage_nll": 8.581372848308298,
+      "gain_nll": 2.6327150643164945
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "selection": "residual_damage",
+      "k": 10,
+      "damage_acc": 0.24888888888888883,
+      "gain_acc": -0.00888888888888878,
+      "damage_nll": 3.1040973806195122,
+      "gain_nll": 0.6083624240872485
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "selection": "residual_damage",
+      "k": 12,
+      "damage_acc": 0.2933333333333333,
+      "gain_acc": -0.005555555555555536,
+      "damage_nll": 4.062133839472662,
+      "gain_nll": 0.7045911356537289
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "selection": "residual_damage",
+      "k": 6,
+      "damage_acc": 0.171111111111111,
+      "gain_acc": 0.03444444444444439,
+      "damage_nll": 0.9067734346411909,
+      "gain_nll": 0.0778396018755747
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "selection": "residual_damage",
+      "k": 8,
+      "damage_acc": 0.22444444444444434,
+      "gain_acc": 0.013333333333333253,
+      "damage_nll": 1.7541167288960295,
+      "gain_nll": 0.1942651876434902
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "selection": "residual_damage",
+      "k": 12,
+      "damage_acc": 0.4188888888888888,
+      "gain_acc": 0.01222222222222219,
+      "damage_nll": 4.201004409904885,
+      "gain_nll": -0.25293531516402545
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "selection": "residual_damage",
+      "k": 8,
+      "damage_acc": 0.2766666666666666,
+      "gain_acc": 0.09888888888888892,
+      "damage_nll": 1.7319719019482058,
+      "gain_nll": 0.6592947876353739
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "selection": "recovery_top",
+      "k": 1,
+      "damage_acc": 0.20000000000000012,
+      "gain_acc": 0.06333333333333335,
+      "damage_nll": 3.3063602597079105,
+      "gain_nll": 1.999716543416115
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "selection": "recovery_top",
+      "k": 2,
+      "damage_acc": 0.3044444444444445,
+      "gain_acc": 0.1466666666666666,
+      "damage_nll": 3.664579924410211,
+      "gain_nll": 2.565908894438203
+    },
+    {
+      "model": "Qwen2.5-1.5B",
+      "selection": "recovery_top",
+      "k": 4,
+      "damage_acc": 0.32222222222222224,
+      "gain_acc": 0.09999999999999998,
+      "damage_nll": 4.983084346231692,
+      "gain_nll": 3.3052483280791005
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "selection": "recovery_top",
+      "k": 2,
+      "damage_acc": 0.054444444444444295,
+      "gain_acc": 0.005555555555555536,
+      "damage_nll": 0.35899922476027,
+      "gain_nll": 0.06836256425542686
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "selection": "recovery_top",
+      "k": 4,
+      "damage_acc": 0.10111111111111104,
+      "gain_acc": 0.016666666666666607,
+      "damage_nll": 0.969520346043496,
+      "gain_nll": 0.25181361250303524
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "selection": "residual_damage",
+      "k": 2,
+      "damage_acc": 0.05111111111111111,
+      "gain_acc": 0.004444444444444473,
+      "damage_nll": 0.14329630836417429,
+      "gain_nll": 0.010482935885400835
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "selection": "residual_damage",
+      "k": 4,
+      "damage_acc": 0.06888888888888878,
+      "gain_acc": 0.02444444444444438,
+      "damage_nll": 0.4034051923714459,
+      "gain_nll": 0.09379180642528873
+    }
+  ],
+  "status": "complete",
+  "notes": "One row per unique (model, selection, k). Damage and gain are both measured against plain skip at the identical layer set.",
+  "claim_correction": {
+    "RETRACTED": "'gains scale with damage' / 'proportional to damage' -- NOT supported on the accuracy axis.",
+    "counterexamples": [
+      {
+        "cell": "7B residual_damage k=12",
+        "damage_pts": 41.9,
+        "gain_pts": 1.22,
+        "note": "the MOST damaged cell in the study; gain is n.s. (z=0.55)"
+      },
+      {
+        "cell": "1.5B residual_damage k=12",
+        "damage_pts": 29.3,
+        "gain_pts": -0.56,
+        "note": "severe damage, NEGATIVE gain"
+      },
+      {
+        "cell": "0.5B residual_damage k=10",
+        "damage_pts": 26.7,
+        "gain_pts": 1.67,
+        "note": "severe damage, n.s. gain"
+      }
+    ],
+    "SUPPORTED_CLAIM": "Severe damage is NECESSARY but NOT SUFFICIENT. Every statistically significant accuracy gain occurs at damage >= 27.7 accuracy points; but many cells with damage >= 27 pts show no gain at all. Damage predicts WHERE a gain is possible, not HOW LARGE it will be.",
+    "min_damage_among_significant_gains_pts": 27.7,
+    "n_cells_with_damage_over_27pts": 6,
+    "n_of_those_that_are_significant": 3,
+    "nll_axis_is_different": "On the NLL axis the monotone relationship IS strong (spearman +0.820, p=9e-08). The weakness is specific to ACCURACY (spearman +0.468) -- and a monotone correlation never licensed the word \"proportional\" in the first place."
+  }
+}

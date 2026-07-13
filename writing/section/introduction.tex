@@ -1,0 +1,64 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Transformer language models compute by applying a stack of residual blocks, and
+every token pays for every block. Depth is therefore a direct axis of inference
+cost: it multiplies latency, memory traffic, and energy, and unlike hidden width
+it cannot be amortized away by batching. As models grow deeper to grow more
+capable, the cost of simply traversing the stack has become one of the dominant
+terms in the inference bill \citep{zhen2025taming}.
+
+Layer skipping is an attractive response. Removing an entire block eliminates real
+computation, its attention and MLP matmuls both disappear, without changing hidden
+width, attention pattern or KV-cache layout, and a substantial literature establishes that
+Transformers tolerate it surprisingly well \citep{men2024shortgpt, gromov2024unreasonable,
+fan2020reducing}. Almost all of that work asks \emph{which} blocks to remove, and answers
+with progressively better importance scores. Far less attention has gone to the operator
+that does the removing. When a block is skipped, its residual update is replaced by zero.
+That choice is never argued for; it is simply what ``removing a layer'' has come to mean.
+It is computationally convenient, and representationally wasteful.
+
+A separate line of work tells us the residual stream is not a sequence of unrelated states but a
+trajectory: residual networks behave like ensembles of shallow paths \citep{veit2016residual},
+residual connections encourage iterative refinement of a single representation
+\citep{jastrzebski2018residual}, and a hidden state at one depth can often be mapped to a nearby
+depth linearly \citep{din2023jump, belrose2023eliciting}. If depth is a trajectory, a block's
+update is the next step along a path the model has already walked, and steps along a smooth path
+should be predictable from the steps before them.
+
+\begin{center}
+\emph{How much of a skipped Transformer block's residual update is predictable from the preceding depth trajectory, \\ and can it be recovered at negligible
+cost?}
+\end{center}
+
+We take this question literally. Writing the pre-norm update at layer $\ell$ as
+$\dd_\ell = F_\ell(\hh_\ell)$, so that $\hh_{\ell+1} = \hh_\ell + \dd_\ell$, plain
+skipping is precisely the estimator $\widehat{\dd}_\ell = 0$, a zero-order predictor that
+ignores every update the model has already computed. We instead treat $\dd_{\ell-1},
+\dd_{\ell-2}, \dots$ as a short series indexed by depth and fit an autoregressive model
+that forecasts $\dd_\ell$ from it, using information already sitting in the residual
+stream at inference time and adding 0.64\% to prefill latency (7B, sequence length
+512).
+
+Much of the missing update turns out to be recoverable. We introduce \textbf{\mname
+(Depth-wise AutoRegressive update prediction)}, which replaces the zero-update assumption
+with a closed-form per-channel forecast fitted on unlabeled text with no gradient
+training, and we report three results.
+
+Four things here are new. (1) \textbf{Per-channel depth-autoregressive recovery}: we forecast a
+skipped block's residual update from the updates preceding it, per channel and in closed form,
+and show that the obvious scalar version of the idea fails, and is at some layers worse than
+dropping the update outright. (2) \textbf{A cross-token extension}, which also reads the previous
+token's update from the preceding layer, and which repairs the one layer no amount of
+regularisation could. (3) \textbf{Damage proportionality}: the benefit of repair scales with the
+damage skipping inflicts on the likelihood axis, and significant downstream gains appear only
+where that damage is severe,
+an ordering we then bound with the first out-of-family test of it. (4) \textbf{A measured noise
+floor} for multiple-choice evaluation: re-scoring an identical configuration under a different
+batch shape moves the score, by as much as several of the effects reported in this area.
+
+Concretely, \mname recovers 4.6\% to 23.3\% of the language-modelling damage skipping causes at
+light budgets across Qwen2.5-0.5B, 1.5B and 7B, at 0.64\% added prefill latency. Where skipping
+is destructive, that recovery reaches behaviour: at 28.6\% of blocks skipped on Qwen2.5-7B,
+under the deployable rule, it answers 89 more questions correctly out of 900 than plain skipping
+($z=4.31$), one of four results surviving Bonferroni correction over all 63 comparisons.

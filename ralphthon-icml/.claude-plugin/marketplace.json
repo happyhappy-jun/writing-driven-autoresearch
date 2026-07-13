@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "ralphthon-icml",
+  "owner": {
+    "name": "Team Attention",
+    "url": "https://github.com/team-attention"
+  },
+  "description": "Ralphthon @ICML \"Auto Research\" skills for Claude Code",
+  "plugins": [
+    {
+      "name": "ralphthon-icml",
+      "source": "./",
+      "description": "Attendee orientation, the pinned official VESSL autoresearch recipe on an approved A100, local-first W&B experiment tracking, Weave tracing, platform onboarding, and testable world-model ideation.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Team Attention"
+      },
+      "homepage": "https://luma.com/hjuo7auc",
+      "license": "MIT",
+      "keywords": [
+        "ralphthon",
+        "icml",
+        "auto-research",
+        "wandb",
+        "weave",
+        "vessl",
+        "world-model",
+        "hackathon"
+      ]
+    }
+  ]
+}

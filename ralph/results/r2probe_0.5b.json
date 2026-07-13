@@ -1,0 +1,167 @@
+{
+  "run_id": "r2probe_0.5b",
+  "round": 2,
+  "model": "Qwen2.5-0.5B",
+  "config": {
+    "n_calib_seqs": 16,
+    "n_eval_seqs": 16,
+    "seq_len": 512,
+    "dtype": "float32",
+    "gpu": "TITAN X (Pascal, sm_61)",
+    "corpus": "wikitext-103-raw-v1",
+    "seed": 42,
+    "disjoint_from_calib": true,
+    "min_gap": 2
+  },
+  "dense_nll": 2.7284726270919637,
+  "coefficients_fitted": "single-layer on dense trajectory (compounding is under test)",
+  "runs": {
+    "predictability_k2": {
+      "selection": "predictability",
+      "k": 2,
+      "skipped_layers": [
+        3,
+        10
+      ],
+      "min_gap_ok": true,
+      "wikitext_nll": {
+        "dense": 2.7284726270919637,
+        "plain_skip": 3.2434471070500988,
+        "copy_update": 3.644643983045452,
+        "depth_ar1": 3.6270288290898396,
+        "depth_ar2": 3.612885845557471,
+        "depth_ar_diag": 3.2159354874031356
+      },
+      "gap_recovered_nll": {
+        "copy_update": -0.7790616654013003,
+        "depth_ar1": -0.7448557879429758,
+        "depth_ar2": -0.7173923230863903,
+        "depth_ar_diag": 0.053423267982521616
+      }
+    },
+    "predictability_k4": {
+      "selection": "predictability",
+      "k": 4,
+      "skipped_layers": [
+        3,
+        8,
+        10,
+        12
+      ],
+      "min_gap_ok": true,
+      "wikitext_nll": {
+        "dense": 2.7284726270919637,
+        "plain_skip": 3.798875162297035,
+        "copy_update": 5.725162955256111,
+        "depth_ar1": 3.9354938399471826,
+        "depth_ar2": 3.9393252040605655,
+        "depth_ar_diag": 3.5917458906908153
+      },
+      "gap_recovered_nll": {
+        "copy_update": -1.799591956861379,
+        "depth_ar1": -0.1276329914745331,
+        "depth_ar2": -0.13121235903708173,
+        "depth_ar_diag": 0.19350596134989284
+      }
+    },
+    "oracle_lite_k2": {
+      "selection": "oracle_lite",
+      "k": 2,
+      "skipped_layers": [
+        10,
+        13
+      ],
+      "min_gap_ok": true,
+      "wikitext_nll": {
+        "dense": 2.7284726270919637,
+        "plain_skip": 2.930026037471398,
+        "copy_update": 3.2798622084045177,
+        "depth_ar1": 2.922080504806723,
+        "depth_ar2": 2.9181479995695785,
+        "depth_ar_diag": 2.9143163398963234
+      },
+      "gap_recovered_nll": {
+        "copy_update": -1.735699585903986,
+        "depth_ar1": 0.039421474683643654,
+        "depth_ar2": 0.058932458049002046,
+        "depth_ar_diag": 0.07794309977439762
+      }
+    },
+    "oracle_lite_k4": {
+      "selection": "oracle_lite",
+      "k": 4,
+      "skipped_layers": [
+        8,
+        10,
+        13,
+        18
+      ],
+      "min_gap_ok": true,
+      "wikitext_nll": {
+        "dense": 2.7284726270919637,
+        "plain_skip": 3.3480607909376086,
+        "copy_update": 4.832113050076289,
+        "depth_ar1": 3.323255633562272,
+        "depth_ar2": 3.312167060812011,
+        "depth_ar_diag": 3.3019469327057593
+      },
+      "gap_recovered_nll": {
+        "copy_update": -2.39522370783764,
+        "depth_ar1": 0.04003491161189465,
+        "depth_ar2": 0.05793159427516037,
+        "depth_ar_diag": 0.07442662872323258
+      }
+    },
+    "recovery_top_k2": {
+      "selection": "recovery_top",
+      "k": 2,
+      "skipped_layers": [
+        11,
+        21
+      ],
+      "min_gap_ok": true,
+      "wikitext_nll": {
+        "dense": 2.7284726270919637,
+        "plain_skip": 3.352255474938158,
+        "copy_update": 3.4398669946400804,
+        "depth_ar1": 3.2487580792188475,
+        "depth_ar2": 3.2456313539403676,
+        "depth_ar_diag": 3.224681714449517
+      },
+      "gap_recovered_nll": {
+        "copy_update": -0.14045195375991582,
+        "depth_ar1": 0.16591895092445674,
+        "depth_ar2": 0.17093147297323685,
+        "depth_ar_diag": 0.2045163007112646
+      }
+    },
+    "recovery_top_k4": {
+      "selection": "recovery_top",
+      "k": 4,
+      "skipped_layers": [
+        7,
+        11,
+        13,
+        21
+      ],
+      "min_gap_ok": true,
+      "wikitext_nll": {
+        "dense": 2.7284726270919637,
+        "plain_skip": 3.9465172195641163,
+        "copy_update": 4.782065187443965,
+        "depth_ar1": 3.7479366695620646,
+        "depth_ar2": 3.7574012023101337,
+        "depth_ar_diag": 3.6462459449920632
+      },
+      "gap_recovered_nll": {
+        "copy_update": -0.6859748592488013,
+        "depth_ar1": 0.1630322495821036,
+        "depth_ar2": 0.15526198172281303,
+        "depth_ar_diag": 0.24651911467594156
+      }
+    }
+  },
+  "status": "complete",
+  "notes": "NLL-only (plan section 11: no downstream tasks for a method that has not improved LM NLL). depth_ar_diag = Variant C (per-channel), added because R1b showed the scalar predictor is the wrong model class.",
+  "elapsed_sec": 48.78559994697571
+}

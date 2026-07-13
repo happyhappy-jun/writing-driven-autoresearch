@@ -1,0 +1,115 @@
+{
+  "run_id": "ridge_analysis_0.5b",
+  "round": 1.5,
+  "model": "Qwen2.5-0.5B",
+  "config": {
+    "n_calib_seqs": 16,
+    "seq_len": 512,
+    "dtype": "float32",
+    "gpu": "TITAN X (Pascal, sm_61)",
+    "seed": 42,
+    "params_per_layer": {
+      "depth_ar": 896,
+      "depth_ar1": 1
+    },
+    "ridge": 0.01,
+    "selection_rule": "ridge chosen by max mean single-layer NLL recovery on the DEV split"
+  },
+  "calib": {
+    "corpus": "wikitext-103-raw-v1",
+    "split": "train"
+  },
+  "eval": {
+    "corpus": "wikitext-103-raw-v1",
+    "split": "train-heldout (DEV)",
+    "disjoint_from_calib": true,
+    "note": "This is the DEV split used ONLY to choose the ridge. Every number reported in the paper is measured on wikitext-2 test."
+  },
+  "dense_nll_dev": 2.7284726270919637,
+  "ridge_grid": [
+    0.0,
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "by_ridge": {
+    "0.0": {
+      "mean_recovery_dev": -0.07511634139190594,
+      "median_recovery_dev": 0.06634254398143302,
+      "min_recovery_dev": -3.6750361787167867,
+      "n_layers_recovery_negative": 5,
+      "layer2_recovery_dev": -3.6750361787167867,
+      "layer2_nll_dev": 11.012211146296517,
+      "layer2_max_abs_a": 41.98638916015625
+    },
+    "0.01": {
+      "mean_recovery_dev": -0.07372223077271099,
+      "median_recovery_dev": 0.06647906033872808,
+      "min_recovery_dev": -3.6788436435458802,
+      "n_layers_recovery_negative": 4,
+      "layer2_recovery_dev": -3.6788436435458802,
+      "layer2_nll_dev": 11.018957627363095,
+      "layer2_max_abs_a": 41.81163024902344
+    },
+    "0.1": {
+      "mean_recovery_dev": -0.07711536088817929,
+      "median_recovery_dev": 0.06706634087994778,
+      "min_recovery_dev": -3.7127427276255913,
+      "n_layers_recovery_negative": 4,
+      "layer2_recovery_dev": -3.7127427276255913,
+      "layer2_nll_dev": 11.079023718366894,
+      "layer2_max_abs_a": 40.30188751220703
+    },
+    "1.0": {
+      "mean_recovery_dev": -0.10443441512135916,
+      "median_recovery_dev": 0.05568726406005098,
+      "min_recovery_dev": -3.9702327996104625,
+      "n_layers_recovery_negative": 5,
+      "layer2_recovery_dev": -3.9702327996104625,
+      "layer2_nll_dev": 11.535272685449604,
+      "layer2_max_abs_a": 29.61018180847168
+    },
+    "10.0": {
+      "mean_recovery_dev": -0.08536497614449427,
+      "median_recovery_dev": 0.01476885267391781,
+      "min_recovery_dev": -2.423105853184992,
+      "n_layers_recovery_negative": 5,
+      "layer2_recovery_dev": -2.423105853184992,
+      "layer2_nll_dev": 8.793904578278774,
+      "layer2_max_abs_a": 8.105929374694824
+    }
+  },
+  "selected_ridge": 0.01,
+  "findings": {
+    "P_is_energy_blind": {
+      "statement": "Selecting the ridge by held-out predictability P picks lambda ~= 0, which leaves |a_c| = 42 and held-out NLL at 11.01 for layer 2. P is an energy-weighted fit metric, so channels carrying little update energy barely register in it -- yet their unregularized coefficients are exactly what wreck the model.",
+      "ridge_selected_by_P": 0.001,
+      "ridge_selected_by_NLL_dev": 0.01,
+      "relation_to_pivot_e": "The same geometry-vs-function dissociation the paper reports across layers reappears inside hyperparameter selection: a geometric fit criterion is blind to a functional catastrophe."
+    },
+    "layer2_not_rescued_by_ridge": {
+      "statement": "The ridge does not rescue layer 2 at any strength tested. Recovery goes from -3.675 (no ridge) to -2.423 (lambda=10), never approaching 0. The pathology lives in HIGH-energy channels, which a ridge scaled to the layer's mean channel energy cannot shrink.",
+      "recovery_by_ridge": {
+        "0.0": -3.6750361787167867,
+        "0.01": -3.6788436435458802,
+        "0.1": -3.7127427276255913,
+        "1.0": -3.9702327996104625,
+        "10.0": -2.423105853184992
+      },
+      "max_abs_a_by_ridge": {
+        "0.0": 41.98638916015625,
+        "0.01": 41.81163024902344,
+        "0.1": 40.30188751220703,
+        "1.0": 29.61018180847168,
+        "10.0": 8.105929374694824
+      },
+      "consequence": "None: layer 2 has 1.77 nats of single-layer damage and negative diag recovery, so the residual-damage selection rule excludes it from every reported configuration."
+    },
+    "ridge_effect_is_small": {
+      "statement": "Mean single-layer recovery is flat across the grid (-0.075 unregularized to -0.074 at the selected ridge). The ridge is a stability guard, not a source of the method's gains."
+    }
+  },
+  "status": "complete",
+  "notes": "All values measured on the DEV split (wikitext-103 held-out). The ridge grid was swept once; lambda was not re-tuned per layer or per model."
+}

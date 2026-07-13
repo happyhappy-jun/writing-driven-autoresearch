@@ -1,0 +1,94 @@
+\section{Method}
+\label{sec:method}
+
+\paragraph{Residual updates as a depth-indexed sequence.} Consider a pre-norm
+Transformer with $L$ blocks acting on a hidden state $\hh_\ell \in \mathbb{R}^{T
+\times d}$ for $T$ tokens of width $d$. Each block contributes an additive
+residual update
+\begin{equation}
+\hh_{\ell+1} = \hh_\ell + \dd_\ell,
+\qquad
+\dd_\ell = F_\ell(\hh_\ell),
+\label{eq:residual}
+\end{equation}
+where $F_\ell$ is the attention-plus-MLP sublayer stack. Skipping block $\ell$
+means producing an estimate $\widehat{\dd}_\ell$ \emph{without} evaluating
+$F_\ell$, then propagating $\widehat{\hh}_{\ell+1} = \hh_\ell +
+\widehat{\dd}_\ell$. Seen this way, every layer-skipping method is a
+\emph{predictor} of a missing update, and methods differ only in what they
+predict.
+
+\paragraph{Plain skipping is a zero-order predictor.} The conventional skip
+operator sets
+\begin{equation}
+\widehat{\dd}^{\,\mathrm{skip}}_\ell = 0 ,
+\label{eq:plainskip}
+\end{equation}
+the unique estimator that uses no information at all. That is what makes it cheap,
+and it is also what makes it wasteful: by the time the model reaches layer $\ell$
+it has already computed $\dd_{\ell-1}, \dd_{\ell-2}, \dots$, all of which sit in
+the residual stream and all of which \cref{eq:plainskip} discards. A second, equally
+fitting-free estimator is available: reuse the previous update,
+$\widehat{\dd}_\ell = \dd_{\ell-1}$. and we carry this \textbf{Copy Update} baseline throughout,
+because any gain \mname shows over it is a gain from \emph{fitting}, not merely
+from being nonzero.
+
+\paragraph{\mname: per-channel autoregression across depth.} We model the update
+sequence as autoregressive in depth, with one coefficient per channel. Writing
+$\aal_\ell \in \mathbb{R}^{d}$ for the fitted coefficient vector,
+\begin{equation}
+\widehat{\dd}_\ell = \aal_\ell \odot \dd_{\ell-1},
+\qquad
+\widehat{\hh}_{\ell+1} = \hh_\ell + \aal_\ell \odot \dd_{\ell-1},
+\label{eq:diag}
+\end{equation}
+where $\odot$ is the elementwise product, broadcast over the $T$ token positions.
+Each channel $j$ has an independent closed-form least-squares solution,
+\begin{equation}
+a^{\star}_{\ell,j} =
+\frac{\sum_t \Delta_{\ell-1,tj}\,\Delta_{\ell,tj}}
+     {\sum_t \Delta_{\ell-1,tj}^{2} + \epsilon}.
+\label{eq:fit}
+\end{equation}
+Constraining every channel of $\aal_\ell$ to a common value gives the scalar
+predictor
+\begin{equation}
+\widehat{\dd}_\ell = \alpha_\ell \dd_{\ell-1},
+\qquad
+\alpha^{\star}_\ell =
+\frac{\langle \dd_{\ell-1}, \dd_\ell \rangle_F}
+     {\|\dd_{\ell-1}\|_F^2 + \epsilon},
+\label{eq:ar1}
+\end{equation}
+and setting $\aal_\ell = \bm{0}$ recovers plain skipping. \mname therefore
+generalizes both. We report the scalar predictor throughout as an ablation rather
+than a simplification: \Cref{sec:experiments} shows that the restriction to a
+single coefficient is not a minor loss of capacity but the difference between a
+method that repairs a skipped block and one that, at some layers, damages it
+further.
+
+\paragraph{Closed-form calibration, no gradients.} Both estimators are fitted by
+streaming a small unlabeled calibration set through the dense model once and
+accumulating the sums in \cref{eq:fit} in FP64. No hidden states are stored, no
+gradients are taken, no labels are used, and recalibrating an entire model costs a
+single forward pass over 16--32 sequences. Padding tokens are excluded from
+the accumulators.
+
+\paragraph{Which layers to skip.} The natural companion to \cref{eq:fit} is the held-out
+fraction of update energy a predictor explains,
+\begin{equation}
+P_\ell = 1 - \frac{\sum \|\dd_\ell - \widehat{\dd}_\ell\|_2^2}{\sum \|\dd_\ell\|_2^2},
+\label{eq:pscore}
+\end{equation}
+computable from the dense model before any skipping decision. We evaluate it against two rules
+that instead measure the effect of skipping directly on a development set
+(\Cref{sec:app-selection}). \Cref{sec:experiments} shows the choice between them matters more
+than the choice of predictor, and that the cheap one is the wrong one.
+
+\paragraph{Cost.} \mname stores a $d$-dimensional coefficient vector per skipped
+block ($d = 896$ on Qwen2.5-0.5B), three orders of magnitude fewer than the $d^2$
+parameters a dense boundary map between hidden states would require. Inference cost is unchanged in order: one elementwise multiply and one add,
+$O(Td)$ work against the $O(Td^2)$ the block itself would have cost, on tensors
+already resident in the residual stream. The only additional memory traffic is
+retaining $\dd_{\ell-1}$ for one further layer. The block-compute reduction that
+motivates skipping therefore survives intact.

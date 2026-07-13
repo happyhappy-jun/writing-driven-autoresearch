@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\caption{\textbf{A second model family.} Qwen3 at the deployable budget ($k=4$, damage-based
+selection), same protocol as Qwen2.5-1.5B/7B. Recovery is non-monotone in model size: the
+Qwen2.5 scale trend is family-specific, not universal. Qwen3-1.7B is the diagnosed exception,
+where four layers that each repair to better than dense individually fail to compose
+(\Cref{sec:app-qwen3}).}
+\label{tab:qwen3main}
+\begin{tabular}{lccc}
+\toprule
+Model & Damage (nats) & \mname rec. & CT rec. \\
+\midrule
+Qwen3-1.7B & 0.61 & -1.9\% & -2.7\% \\
+Qwen3-4B & 0.10 & +4.7\% & +6.2\% \\
+Qwen3-8B & 0.16 & +12.7\% & +13.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}

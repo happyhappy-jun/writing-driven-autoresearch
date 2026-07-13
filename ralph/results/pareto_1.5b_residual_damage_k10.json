@@ -1,0 +1,349 @@
+{
+  "run_id": "pareto_1.5b_residual_damage_k10",
+  "round": 5,
+  "model": "Qwen/Qwen2.5-1.5B",
+  "dense_nll": 2.329767710914081,
+  "dtype": "bfloat16",
+  "config": {
+    "n_calib_seqs": 32,
+    "n_eval_seqs": 32,
+    "seq_len": 1024,
+    "dtype": "bfloat16",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "seed": 42,
+    "n_layers": 28,
+    "eligible_layers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "d_model": 1536,
+    "params_per_layer": {
+      "depth_ar": 1536,
+      "depth_ar_ct": 3072,
+      "depth_ar1": 1,
+      "plain_skip": 0,
+      "copy_update": 0
+    },
+    "diag_ridge": 0.01,
+    "n_task_examples": 300,
+    "batch_size": 4
+  },
+  "calib": {
+    "corpus": "wikitext-103-raw-v1",
+    "split": "train",
+    "n_seq": 32,
+    "seq_len": 1024
+  },
+  "eval": {
+    "corpus": "wikitext-2-raw-v1",
+    "split": "test",
+    "n_seq": 32,
+    "seq_len": 1024,
+    "disjoint_from_calib": true
+  },
+  "selection": {
+    "rules_run": [
+      "recovery_top",
+      "residual_damage"
+    ],
+    "min_gap": 2,
+    "recovery_top": "argmax recovery_diag_l, excluding recovery < 0",
+    "residual_damage": "argmin damage_l * (1 - recovery_diag_l)"
+  },
+  "layer_scan": {
+    "1": {
+      "nll_plain_skip": 5.7399805202303265,
+      "nll_diag": 3.2041157894862,
+      "damage_plain_skip": 3.4102128093162456,
+      "recovery_diag": 0.7436089395408061,
+      "expected_residual_damage": 0.874348078572119
+    },
+    "2": {
+      "nll_plain_skip": 2.539702149955372,
+      "nll_diag": 2.870034526847714,
+      "damage_plain_skip": 0.20993443904129094,
+      "recovery_diag": -1.573502558231385,
+      "expected_residual_damage": 0.540266815933633
+    },
+    "3": {
+      "nll_plain_skip": 2.5125926046031766,
+      "nll_diag": 2.5096151592773963,
+      "damage_plain_skip": 0.1828248936890957,
+      "recovery_diag": 0.016285776327831902,
+      "expected_residual_damage": 0.17984744836331545
+    },
+    "4": {
+      "nll_plain_skip": 2.5077088385698274,
+      "nll_diag": 2.506961149751562,
+      "damage_plain_skip": 0.17794112765574654,
+      "recovery_diag": 0.004201888726433789,
+      "expected_residual_damage": 0.17719343883748095
+    },
+    "5": {
+      "nll_plain_skip": 2.5314332028411566,
+      "nll_diag": 2.513757042015249,
+      "damage_plain_skip": 0.20166549192707572,
+      "recovery_diag": 0.0876508948407464,
+      "expected_residual_damage": 0.18398933110116822
+    },
+    "6": {
+      "nll_plain_skip": 2.455561740120761,
+      "nll_diag": 2.451612558052936,
+      "damage_plain_skip": 0.12579402920668015,
+      "recovery_diag": 0.03139403430139176,
+      "expected_residual_damage": 0.12184484713885535
+    },
+    "7": {
+      "nll_plain_skip": 2.509133839016787,
+      "nll_diag": 2.4826605890121174,
+      "damage_plain_skip": 0.17936612810270613,
+      "recovery_diag": 0.14759336271958134,
+      "expected_residual_damage": 0.15289287809803653
+    },
+    "8": {
+      "nll_plain_skip": 2.47767122337602,
+      "nll_diag": 2.4731288118170025,
+      "damage_plain_skip": 0.147903512461939,
+      "recovery_diag": 0.030711992456475823,
+      "expected_residual_damage": 0.14336110090292165
+    },
+    "9": {
+      "nll_plain_skip": 2.420141940548707,
+      "nll_diag": 2.4177696443407823,
+      "damage_plain_skip": 0.09037422963462616,
+      "recovery_diag": 0.026249697701608343,
+      "expected_residual_damage": 0.08800193342670148
+    },
+    "10": {
+      "nll_plain_skip": 2.414010024949719,
+      "nll_diag": 2.4079563892876026,
+      "damage_plain_skip": 0.08424231403563809,
+      "recovery_diag": 0.0718597979105301,
+      "expected_residual_damage": 0.07818867837352173
+    },
+    "11": {
+      "nll_plain_skip": 2.4532206626043447,
+      "nll_diag": 2.4421643169704184,
+      "damage_plain_skip": 0.12345295169026382,
+      "recovery_diag": 0.0895591841470591,
+      "expected_residual_damage": 0.1123966060563375
+    },
+    "12": {
+      "nll_plain_skip": 2.4044887436751687,
+      "nll_diag": 2.400559629207969,
+      "damage_plain_skip": 0.07472103276108788,
+      "recovery_diag": 0.05258378159416599,
+      "expected_residual_damage": 0.07079191829388831
+    },
+    "13": {
+      "nll_plain_skip": 2.4363293157635706,
+      "nll_diag": 2.4266788970604174,
+      "damage_plain_skip": 0.10656160484948973,
+      "recovery_diag": 0.0905618746713105,
+      "expected_residual_damage": 0.09691118614633654
+    },
+    "14": {
+      "nll_plain_skip": 2.381518399274111,
+      "nll_diag": 2.38002796608831,
+      "damage_plain_skip": 0.05175068836003005,
+      "recovery_diag": 0.028800258180761595,
+      "expected_residual_damage": 0.05026025517422905
+    },
+    "15": {
+      "nll_plain_skip": 2.402110277006984,
+      "nll_diag": 2.3936835597990362,
+      "damage_plain_skip": 0.07234256609290313,
+      "recovery_diag": 0.1164835264085885,
+      "expected_residual_damage": 0.06391584888495538
+    },
+    "16": {
+      "nll_plain_skip": 2.400774512138508,
+      "nll_diag": 2.396392920407066,
+      "damage_plain_skip": 0.07100680122442693,
+      "recovery_diag": 0.06170664860106789,
+      "expected_residual_damage": 0.06662520949298534
+    },
+    "17": {
+      "nll_plain_skip": 2.43859995864093,
+      "nll_diag": 2.4359105260758116,
+      "damage_plain_skip": 0.1088322477268493,
+      "recovery_diag": 0.02471172489121587,
+      "expected_residual_damage": 0.10614281516173074
+    },
+    "18": {
+      "nll_plain_skip": 2.4281254744953404,
+      "nll_diag": 2.4291678574388684,
+      "damage_plain_skip": 0.09835776358125958,
+      "recovery_diag": -0.010597871541343062,
+      "expected_residual_damage": 0.09940014652478757
+    },
+    "19": {
+      "nll_plain_skip": 2.496079178935756,
+      "nll_diag": 2.491291019099986,
+      "damage_plain_skip": 0.16631146802167507,
+      "recovery_diag": 0.02879031670351162,
+      "expected_residual_damage": 0.1615233081859051
+    },
+    "20": {
+      "nll_plain_skip": 2.459495551252129,
+      "nll_diag": 2.4586880468852432,
+      "damage_plain_skip": 0.12972784033804796,
+      "recovery_diag": 0.00622460348358056,
+      "expected_residual_damage": 0.12892033597116237
+    },
+    "21": {
+      "nll_plain_skip": 2.6186315660157993,
+      "nll_diag": 2.575140756073489,
+      "damage_plain_skip": 0.2888638551017184,
+      "recovery_diag": 0.15055815801875183,
+      "expected_residual_damage": 0.24537304515940805
+    },
+    "22": {
+      "nll_plain_skip": 2.5964934625156384,
+      "nll_diag": 2.601814236555556,
+      "damage_plain_skip": 0.26672575160155754,
+      "recovery_diag": -0.019948482694187142,
+      "expected_residual_damage": 0.27204652564147525
+    },
+    "23": {
+      "nll_plain_skip": 2.6096112453254583,
+      "nll_diag": 2.578317372290766,
+      "damage_plain_skip": 0.27984353441137744,
+      "recovery_diag": 0.11182632144964799,
+      "expected_residual_damage": 0.2485496613766851
+    },
+    "24": {
+      "nll_plain_skip": 2.5910737396036057,
+      "nll_diag": 2.539010738356832,
+      "damage_plain_skip": 0.2613060286895248,
+      "recovery_diag": 0.19924148519601625,
+      "expected_residual_damage": 0.20924302744275103
+    },
+    "25": {
+      "nll_plain_skip": 2.873170441543795,
+      "nll_diag": 2.8329100068445277,
+      "damage_plain_skip": 0.543402730629714,
+      "recovery_diag": 0.07408949648194074,
+      "expected_residual_damage": 0.5031422959304468
+    },
+    "26": {
+      "nll_plain_skip": 2.715820669147191,
+      "nll_diag": 2.5723652978784908,
+      "damage_plain_skip": 0.38605295823311003,
+      "recovery_diag": 0.37159505764511613,
+      "expected_residual_damage": 0.2425975869644099
+    }
+  },
+  "runs": {
+    "residual_damage_k10": {
+      "selection": "residual_damage",
+      "k_requested": 10,
+      "k": 10,
+      "k_reached": true,
+      "skipped_layers": [
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        24
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.35714285714285715,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.329767710914081,
+          "hellaswag": 0.6633333333333333,
+          "piqa": 0.7333333333333333,
+          "arc_easy": 0.73,
+          "avg_acc": 0.7088888888888888
+        },
+        "plain_skip": {
+          "wikitext2_nll": 5.433865091533593,
+          "hellaswag": 0.36666666666666664,
+          "piqa": 0.6,
+          "arc_easy": 0.41333333333333333,
+          "avg_acc": 0.45999999999999996
+        },
+        "copy_update": {
+          "wikitext2_nll": 9.993805317325133,
+          "hellaswag": 0.23666666666666666,
+          "piqa": 0.5233333333333333,
+          "arc_easy": 0.26666666666666666,
+          "avg_acc": 0.3422222222222222
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 5.065953475750582,
+          "hellaswag": 0.3566666666666667,
+          "piqa": 0.6166666666666667,
+          "arc_easy": 0.44,
+          "avg_acc": 0.4711111111111111
+        },
+        "depth_ar": {
+          "wikitext2_nll": 4.825502667446345,
+          "hellaswag": 0.3233333333333333,
+          "piqa": 0.6033333333333334,
+          "arc_easy": 0.4266666666666667,
+          "avg_acc": 0.4511111111111112
+        },
+        "depth_ar_ct": {
+          "wikitext2_nll": 4.817999573012851,
+          "hellaswag": 0.32,
+          "piqa": 0.6133333333333333,
+          "arc_easy": 0.43666666666666665,
+          "avg_acc": 0.4566666666666667
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": -1.4690068211975595,
+          "gap_recovered_avg_acc": -0.47321428571428575
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": 0.11852450830958894,
+          "gap_recovered_avg_acc": 0.04464285714285722
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.1959869003741861,
+          "gap_recovered_avg_acc": -0.03571428571428528
+        },
+        "depth_ar_ct": {
+          "gap_recovered_nll": 0.19840405857300403,
+          "gap_recovered_avg_acc": -0.013392857142856786
+        }
+      }
+    }
+  },
+  "status": "complete",
+  "notes": "depth_ar = Variant C (per-channel diagonal), d scalars/layer, O(Td) at inference. AR(2) is appendix-only and not run here. All methods at a given k skip the identical layer set (see skipped_layers). NLL is computed via a chunked softmax over the sequence (Qwen's ~152k vocabulary makes a full fp32 [B,T,V] cast exceed 24GB at 7B); verified numerically identical to the unchunked computation on 0.5B (dense NLL 2.7626 both ways).",
+  "elapsed_sec": 192.03747963905334
+}

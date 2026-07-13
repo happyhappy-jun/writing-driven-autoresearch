@@ -1,0 +1,738 @@
+{
+  "run_id": "r2_compose_0.5b",
+  "round": 2,
+  "model": "Qwen/Qwen2.5-0.5B",
+  "config": {
+    "n_calib_seqs": 16,
+    "n_eval_seqs": 32,
+    "seq_len": 512,
+    "dtype": "float32",
+    "gpu": "NVIDIA TITAN X (Pascal)",
+    "seed": 42,
+    "n_layers": 24,
+    "eligible_layers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "d_model": 896,
+    "params_per_layer": {
+      "depth_ar": 896,
+      "depth_ar1": 1,
+      "plain_skip": 0,
+      "copy_update": 0
+    },
+    "diag_ridge": 0.01,
+    "n_task_examples": 100
+  },
+  "calib": {
+    "corpus": "wikitext-103-raw-v1",
+    "split": "train",
+    "n_seq": 16,
+    "seq_len": 512
+  },
+  "eval": {
+    "corpus": "wikitext-2-raw-v1",
+    "split": "test",
+    "n_seq": 32,
+    "seq_len": 512,
+    "disjoint_from_calib": true
+  },
+  "selection": {
+    "rules_run": [
+      "recovery_top",
+      "residual_damage"
+    ],
+    "min_gap": 2,
+    "recovery_top": "argmax recovery_diag_l, excluding recovery < 0",
+    "residual_damage": "argmin damage_l * (1 - recovery_diag_l)"
+  },
+  "layer_scan": {
+    "1": {
+      "nll_plain_skip": 6.0689788720144024,
+      "nll_diag": 4.069262328598287,
+      "damage_plain_skip": 3.3063602597079105,
+      "recovery_diag": 0.6048090305781662,
+      "expected_residual_damage": 1.3066437162917954
+    },
+    "2": {
+      "nll_plain_skip": 4.64936970924029,
+      "nll_diag": 10.90140910294592,
+      "damage_plain_skip": 1.8867510969337977,
+      "recovery_diag": -3.3136535093929256,
+      "expected_residual_damage": 8.138790490639428
+    },
+    "3": {
+      "nll_plain_skip": 3.1061342642224785,
+      "nll_diag": 3.087916407344505,
+      "damage_plain_skip": 0.34351565191598654,
+      "recovery_diag": 0.053033556917601365,
+      "expected_residual_damage": 0.32529779503801315
+    },
+    "4": {
+      "nll_plain_skip": 3.011538407664303,
+      "nll_diag": 3.0111315047946725,
+      "damage_plain_skip": 0.24891979535781106,
+      "recovery_diag": 0.0016346746109349164,
+      "expected_residual_damage": 0.24851289248818054
+    },
+    "5": {
+      "nll_plain_skip": 3.0253494848530798,
+      "nll_diag": 2.9880152656962493,
+      "damage_plain_skip": 0.2627308725465878,
+      "recovery_diag": 0.14210061723983458,
+      "expected_residual_damage": 0.22539665338975734
+    },
+    "6": {
+      "nll_plain_skip": 2.9688965170414114,
+      "nll_diag": 2.936684081810452,
+      "damage_plain_skip": 0.20627790473491947,
+      "recovery_diag": 0.15616037632510715,
+      "expected_residual_damage": 0.17406546950395985
+    },
+    "7": {
+      "nll_plain_skip": 3.006990616183295,
+      "nll_diag": 2.966828501791356,
+      "damage_plain_skip": 0.24437200387680313,
+      "recovery_diag": 0.16434826311849637,
+      "expected_residual_damage": 0.20420988948486407
+    },
+    "8": {
+      "nll_plain_skip": 2.940314998027601,
+      "nll_diag": 2.932346090109675,
+      "damage_plain_skip": 0.1776963857211089,
+      "recovery_diag": 0.04484563873140757,
+      "expected_residual_damage": 0.1697274778031832
+    },
+    "9": {
+      "nll_plain_skip": 2.865228147005873,
+      "nll_diag": 2.86387210542695,
+      "damage_plain_skip": 0.10260953469938094,
+      "recovery_diag": 0.01321555138999242,
+      "expected_residual_damage": 0.10125349312045806
+    },
+    "10": {
+      "nll_plain_skip": 2.8623648011417284,
+      "nll_diag": 2.8548515062646995,
+      "damage_plain_skip": 0.09974618883523645,
+      "recovery_diag": 0.07532412982153702,
+      "expected_residual_damage": 0.09223289395820755
+    },
+    "11": {
+      "nll_plain_skip": 2.867447684933475,
+      "nll_diag": 2.856876797622954,
+      "damage_plain_skip": 0.10482907262698316,
+      "recovery_diag": 0.1008392714503521,
+      "expected_residual_damage": 0.09425818531646213
+    },
+    "12": {
+      "nll_plain_skip": 2.8743054698402486,
+      "nll_diag": 2.868916022818372,
+      "damage_plain_skip": 0.11168685753375662,
+      "recovery_diag": 0.04825497951043678,
+      "expected_residual_damage": 0.10629741051188013
+    },
+    "13": {
+      "nll_plain_skip": 2.85928099472966,
+      "nll_diag": 2.8586092241409227,
+      "damage_plain_skip": 0.09666238242316805,
+      "recovery_diag": 0.006949658925190505,
+      "expected_residual_damage": 0.0959906118344307
+    },
+    "14": {
+      "nll_plain_skip": 2.939999628544355,
+      "nll_diag": 2.9391406705340044,
+      "damage_plain_skip": 0.17738101623786307,
+      "recovery_diag": 0.004842446100313147,
+      "expected_residual_damage": 0.17652205822751244
+    },
+    "15": {
+      "nll_plain_skip": 3.013411172009817,
+      "nll_diag": 3.0110693924911542,
+      "damage_plain_skip": 0.25079255970332515,
+      "recovery_diag": 0.00933751591926446,
+      "expected_residual_damage": 0.24845078018466227
+    },
+    "16": {
+      "nll_plain_skip": 3.157928602172706,
+      "nll_diag": 3.169899330058855,
+      "damage_plain_skip": 0.395309989866214,
+      "recovery_diag": -0.030281875472462083,
+      "expected_residual_damage": 0.40728071775236296
+    },
+    "17": {
+      "nll_plain_skip": 3.116641558084004,
+      "nll_diag": 3.0736716640600563,
+      "damage_plain_skip": 0.3540229457775119,
+      "recovery_diag": 0.1213760140026412,
+      "expected_residual_damage": 0.31105305175356435
+    },
+    "18": {
+      "nll_plain_skip": 2.905635325228308,
+      "nll_diag": 2.905757251672757,
+      "damage_plain_skip": 0.14301671292181606,
+      "recovery_diag": -0.0008525328400983412,
+      "expected_residual_damage": 0.14313863936626484
+    },
+    "19": {
+      "nll_plain_skip": 3.054989683350384,
+      "nll_diag": 3.04922827577047,
+      "damage_plain_skip": 0.2923710710438918,
+      "recovery_diag": 0.01970580591076676,
+      "expected_residual_damage": 0.28660966346397787
+    },
+    "20": {
+      "nll_plain_skip": 3.2149529326733486,
+      "nll_diag": 3.151115200385251,
+      "damage_plain_skip": 0.4523343203668566,
+      "recovery_diag": 0.14112953497829506,
+      "expected_residual_damage": 0.388496588078759
+    },
+    "21": {
+      "nll_plain_skip": 3.2429346240889436,
+      "nll_diag": 3.1586152964695273,
+      "damage_plain_skip": 0.48031601178245165,
+      "recovery_diag": 0.17554969135113252,
+      "expected_residual_damage": 0.39599668416303535
+    },
+    "22": {
+      "nll_plain_skip": 3.2526741432753346,
+      "nll_diag": 3.229782553749681,
+      "damage_plain_skip": 0.4900555309688426,
+      "recovery_diag": 0.04671223581620809,
+      "expected_residual_damage": 0.46716394144318896
+    }
+  },
+  "runs": {
+    "recovery_top_k1": {
+      "selection": "recovery_top",
+      "k": 1,
+      "skipped_layers": [
+        1
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.041666666666666664,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.762618612306492,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6,
+          "avg_acc": 0.5866666666666668
+        },
+        "plain_skip": {
+          "wikitext2_nll": 6.0689788720144024,
+          "hellaswag": 0.21,
+          "piqa": 0.62,
+          "arc_easy": 0.33,
+          "avg_acc": 0.38666666666666666
+        },
+        "copy_update": {
+          "wikitext2_nll": 4.8167620412721,
+          "hellaswag": 0.27,
+          "piqa": 0.57,
+          "arc_easy": 0.48,
+          "avg_acc": 0.43999999999999995
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 5.721092188419636,
+          "hellaswag": 0.31,
+          "piqa": 0.53,
+          "arc_easy": 0.37,
+          "avg_acc": 0.4033333333333333
+        },
+        "depth_ar": {
+          "wikitext2_nll": 4.069262328598287,
+          "hellaswag": 0.39,
+          "piqa": 0.61,
+          "arc_easy": 0.35,
+          "avg_acc": 0.45
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": 0.3787297004510105,
+          "gap_recovered_avg_acc": 0.2666666666666663
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": 0.10521741621268443,
+          "gap_recovered_avg_acc": 0.08333333333333326
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.6048090305781662,
+          "gap_recovered_avg_acc": 0.3166666666666666
+        }
+      }
+    },
+    "recovery_top_k2": {
+      "selection": "recovery_top",
+      "k": 2,
+      "skipped_layers": [
+        1,
+        21
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.08333333333333333,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.762618612306492,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6,
+          "avg_acc": 0.5866666666666668
+        },
+        "plain_skip": {
+          "wikitext2_nll": 6.590017631616254,
+          "hellaswag": 0.22,
+          "piqa": 0.54,
+          "arc_easy": 0.42,
+          "avg_acc": 0.3933333333333333
+        },
+        "copy_update": {
+          "wikitext2_nll": 5.129714445995457,
+          "hellaswag": 0.3,
+          "piqa": 0.53,
+          "arc_easy": 0.48,
+          "avg_acc": 0.4366666666666667
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 6.13238732131718,
+          "hellaswag": 0.31,
+          "piqa": 0.5,
+          "arc_easy": 0.41,
+          "avg_acc": 0.4066666666666667
+        },
+        "depth_ar": {
+          "wikitext2_nll": 4.436052305520899,
+          "hellaswag": 0.43,
+          "piqa": 0.58,
+          "arc_easy": 0.4,
+          "avg_acc": 0.47000000000000003
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": 0.3815393112276414,
+          "gap_recovered_avg_acc": 0.2241379310344829
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": 0.11956691946417541,
+          "gap_recovered_avg_acc": 0.06896551724137942
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.5627752202548778,
+          "gap_recovered_avg_acc": 0.396551724137931
+        }
+      }
+    },
+    "recovery_top_k4": {
+      "selection": "recovery_top",
+      "k": 4,
+      "skipped_layers": [
+        1,
+        5,
+        7,
+        21
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.16666666666666666,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.762618612306492,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6,
+          "avg_acc": 0.5866666666666668
+        },
+        "plain_skip": {
+          "wikitext2_nll": 9.366704144039696,
+          "hellaswag": 0.27,
+          "piqa": 0.46,
+          "arc_easy": 0.33,
+          "avg_acc": 0.35333333333333333
+        },
+        "copy_update": {
+          "wikitext2_nll": 6.4803057083595315,
+          "hellaswag": 0.29,
+          "piqa": 0.48,
+          "arc_easy": 0.43,
+          "avg_acc": 0.39999999999999997
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 9.118532355326627,
+          "hellaswag": 0.26,
+          "piqa": 0.52,
+          "arc_easy": 0.39,
+          "avg_acc": 0.38999999999999996
+        },
+        "depth_ar": {
+          "wikitext2_nll": 5.7391078429328335,
+          "hellaswag": 0.27,
+          "piqa": 0.46,
+          "arc_easy": 0.38,
+          "avg_acc": 0.36999999999999994
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": 0.43706254587569615,
+          "gap_recovered_avg_acc": 0.19999999999999976
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": 0.037578524312046224,
+          "gap_recovered_avg_acc": 0.1571428571428569
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.5492957781476251,
+          "gap_recovered_avg_acc": 0.07142857142857113
+        }
+      }
+    },
+    "recovery_top_k6": {
+      "selection": "recovery_top",
+      "k": 6,
+      "skipped_layers": [
+        1,
+        5,
+        7,
+        11,
+        17,
+        21
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.25,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.762618612306492,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6,
+          "avg_acc": 0.5866666666666668
+        },
+        "plain_skip": {
+          "wikitext2_nll": 11.909047375712367,
+          "hellaswag": 0.29,
+          "piqa": 0.48,
+          "arc_easy": 0.33,
+          "avg_acc": 0.3666666666666667
+        },
+        "copy_update": {
+          "wikitext2_nll": 8.20262008971723,
+          "hellaswag": 0.27,
+          "piqa": 0.41,
+          "arc_easy": 0.4,
+          "avg_acc": 0.36000000000000004
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 12.124010060081211,
+          "hellaswag": 0.24,
+          "piqa": 0.46,
+          "arc_easy": 0.38,
+          "avg_acc": 0.36000000000000004
+        },
+        "depth_ar": {
+          "wikitext2_nll": 6.584598998491051,
+          "hellaswag": 0.23,
+          "piqa": 0.52,
+          "arc_easy": 0.37,
+          "avg_acc": 0.37333333333333335
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": 0.40523218207572487,
+          "gap_recovered_avg_acc": -0.030303030303030234
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": -0.02350236249899984,
+          "gap_recovered_avg_acc": -0.030303030303030234
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.5821341328895497,
+          "gap_recovered_avg_acc": 0.030303030303030234
+        }
+      }
+    },
+    "residual_damage_k1": {
+      "selection": "residual_damage",
+      "k": 1,
+      "skipped_layers": [
+        10
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.041666666666666664,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.762618612306492,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6,
+          "avg_acc": 0.5866666666666668
+        },
+        "plain_skip": {
+          "wikitext2_nll": 2.8623648011417284,
+          "hellaswag": 0.41,
+          "piqa": 0.64,
+          "arc_easy": 0.51,
+          "avg_acc": 0.52
+        },
+        "copy_update": {
+          "wikitext2_nll": 2.993305564532744,
+          "hellaswag": 0.42,
+          "piqa": 0.66,
+          "arc_easy": 0.5,
+          "avg_acc": 0.5266666666666667
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 2.8573712080397806,
+          "hellaswag": 0.41,
+          "piqa": 0.62,
+          "arc_easy": 0.51,
+          "avg_acc": 0.5133333333333333
+        },
+        "depth_ar": {
+          "wikitext2_nll": 2.8548515062646995,
+          "hellaswag": 0.41,
+          "piqa": 0.63,
+          "arc_easy": 0.51,
+          "avg_acc": 0.5166666666666667
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": -1.3127395133593245,
+          "gap_recovered_avg_acc": 0.1000000000000005
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": 0.05006299649399493,
+          "gap_recovered_avg_acc": -0.1000000000000005
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.07532412982153702,
+          "gap_recovered_avg_acc": -0.04999999999999942
+        }
+      }
+    },
+    "residual_damage_k2": {
+      "selection": "residual_damage",
+      "k": 2,
+      "skipped_layers": [
+        10,
+        13
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.08333333333333333,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.762618612306492,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6,
+          "avg_acc": 0.5866666666666668
+        },
+        "plain_skip": {
+          "wikitext2_nll": 2.9849704762375446,
+          "hellaswag": 0.44,
+          "piqa": 0.66,
+          "arc_easy": 0.48,
+          "avg_acc": 0.5266666666666667
+        },
+        "copy_update": {
+          "wikitext2_nll": 3.4126919939467646,
+          "hellaswag": 0.39,
+          "piqa": 0.64,
+          "arc_easy": 0.47,
+          "avg_acc": 0.5
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 2.9735790091207726,
+          "hellaswag": 0.43,
+          "piqa": 0.64,
+          "arc_easy": 0.48,
+          "avg_acc": 0.5166666666666667
+        },
+        "depth_ar": {
+          "wikitext2_nll": 2.9663090530868907,
+          "hellaswag": 0.41,
+          "piqa": 0.64,
+          "arc_easy": 0.48,
+          "avg_acc": 0.51
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": -1.923624610773889,
+          "gap_recovered_avg_acc": -0.4444444444444451
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": 0.051231714074159385,
+          "gap_recovered_avg_acc": -0.16666666666666666
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.08392744194148272,
+          "gap_recovered_avg_acc": -0.2777777777777784
+        }
+      }
+    },
+    "residual_damage_k4": {
+      "selection": "residual_damage",
+      "k": 4,
+      "skipped_layers": [
+        8,
+        10,
+        13,
+        18
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.16666666666666666,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.762618612306492,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6,
+          "avg_acc": 0.5866666666666668
+        },
+        "plain_skip": {
+          "wikitext2_nll": 3.4208793562820925,
+          "hellaswag": 0.42,
+          "piqa": 0.68,
+          "arc_easy": 0.47,
+          "avg_acc": 0.5233333333333333
+        },
+        "copy_update": {
+          "wikitext2_nll": 5.083602770934493,
+          "hellaswag": 0.31,
+          "piqa": 0.54,
+          "arc_easy": 0.42,
+          "avg_acc": 0.42333333333333334
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 3.405240079555537,
+          "hellaswag": 0.4,
+          "piqa": 0.68,
+          "arc_easy": 0.46,
+          "avg_acc": 0.5133333333333333
+        },
+        "depth_ar": {
+          "wikitext2_nll": 3.390915247346691,
+          "hellaswag": 0.4,
+          "piqa": 0.66,
+          "arc_easy": 0.47,
+          "avg_acc": 0.51
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": -2.5259343350938637,
+          "gap_recovered_avg_acc": -1.578947368421049
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": 0.023758483047464418,
+          "gap_recovered_avg_acc": -0.1578947368421051
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.045520121334339136,
+          "gap_recovered_avg_acc": -0.21052631578947287
+        }
+      }
+    },
+    "residual_damage_k6": {
+      "selection": "residual_damage",
+      "k": 6,
+      "skipped_layers": [
+        6,
+        8,
+        10,
+        13,
+        15,
+        18
+      ],
+      "layers_identical_across_methods": true,
+      "min_gap_ok": true,
+      "frac_blocks_skipped": 0.25,
+      "methods": {
+        "dense": {
+          "wikitext2_nll": 2.762618612306492,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6,
+          "avg_acc": 0.5866666666666668
+        },
+        "plain_skip": {
+          "wikitext2_nll": 4.452213223544547,
+          "hellaswag": 0.29,
+          "piqa": 0.61,
+          "arc_easy": 0.47,
+          "avg_acc": 0.4566666666666666
+        },
+        "copy_update": {
+          "wikitext2_nll": 8.684331942620972,
+          "hellaswag": 0.26,
+          "piqa": 0.54,
+          "arc_easy": 0.33,
+          "avg_acc": 0.3766666666666667
+        },
+        "depth_ar1": {
+          "wikitext2_nll": 4.344385773463499,
+          "hellaswag": 0.31,
+          "piqa": 0.58,
+          "arc_easy": 0.45,
+          "avg_acc": 0.4466666666666666
+        },
+        "depth_ar": {
+          "wikitext2_nll": 4.1486355603866265,
+          "hellaswag": 0.3,
+          "piqa": 0.56,
+          "arc_easy": 0.45,
+          "avg_acc": 0.4366666666666667
+        }
+      },
+      "recovery": {
+        "copy_update": {
+          "gap_recovered_nll": -2.504813101869051,
+          "gap_recovered_avg_acc": -0.6153846153846139
+        },
+        "depth_ar1": {
+          "gap_recovered_nll": 0.0638185333711716,
+          "gap_recovered_avg_acc": -0.07692307692307689
+        },
+        "depth_ar": {
+          "gap_recovered_nll": 0.17967485285448026,
+          "gap_recovered_avg_acc": -0.15384615384615294
+        }
+      }
+    }
+  },
+  "status": "complete",
+  "notes": "depth_ar = Variant C (per-channel diagonal), d scalars/layer, O(Td) at inference. AR(2) is appendix-only and not run here. All methods at a given k skip the identical layer set (see skipped_layers).",
+  "elapsed_sec": 839.9735677242279,
+  "dense_nll": 2.762618612306492,
+  "dtype": "float32"
+}

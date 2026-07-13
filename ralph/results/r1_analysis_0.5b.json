@@ -1,0 +1,95 @@
+{
+  "run_id": "r1_analysis_0.5b",
+  "round": 1,
+  "model": "Qwen2.5-0.5B",
+  "sources": {
+    "r1_layerscan_0.5b.json": {
+      "sha256": "acc518847a6f53f8",
+      "mtime": "2026-07-12T12:45:03"
+    },
+    "diag_channel_stats_0.5b.json": {
+      "sha256": "b202c23542286548",
+      "mtime": "2026-07-12T13:06:10"
+    },
+    "r1v_C_0.5b.json": {
+      "sha256": "f545ac95a0e62c97",
+      "mtime": "2026-07-12T13:17:06"
+    }
+  },
+  "config": {
+    "dtype": "float32",
+    "gpu": "TITAN X (Pascal, sm_61)",
+    "seed": 42,
+    "params_per_layer": {
+      "depth_ar": 896,
+      "depth_ar1": 1
+    },
+    "ridge": 0.01,
+    "selection_rule": "n/a (analysis artifact)"
+  },
+  "eval": {
+    "corpus": "wikitext-103-raw-v1",
+    "split": "train-heldout",
+    "disjoint_from_calib": true
+  },
+  "n_eligible_layers": 22,
+  "paper_cited_stats": {
+    "spearman_P_ar1_vs_recovery_ar1": {
+      "rho": -0.015245623941276118,
+      "p_value": 0.946312760752094,
+      "n": 22
+    },
+    "alpha_ar1_negative_in_layers_4_16": {
+      "n_negative": 13,
+      "n_total": 13
+    },
+    "mean_recovery_delta_ar2_minus_ar1": 0.0009075468361569028
+  },
+  "mechanism_pivot_b": {
+    "claim_tested": "the scalar alpha is a bad summary of the channel population",
+    "frac_channels_positive_L4_16_mean": 0.11650068599444169,
+    "median_a_l_L4_16_mean": -0.18747218870199645,
+    "channels_agree_in_sign": true,
+    "spearman_scalar_divergence_vs_diag_advantage": {
+      "rho": 0.051383399209486175,
+      "p_value": 0.8203531110821478,
+      "n": 22,
+      "x": "|alpha_ar1 - median(a_l)|",
+      "y": "recovery_diag - recovery_ar1"
+    },
+    "worked_example_layer_4": {
+      "alpha_ar1": -0.0010251579770788125,
+      "median_a_l": -0.11811546981334686,
+      "frac_channels_positive": 0.1752232164144516,
+      "note": "the energy-weighted scalar collapses to ~0 while ~82% of channels agree on a clearly negative coefficient"
+    }
+  },
+  "selection_rule_expected_residual_damage": {
+    "formula": "damage_l * (1 - recovery_diag_l)",
+    "per_layer": {
+      "10": 0.07971583663508008,
+      "12": 0.08393942556805856,
+      "11": 0.08530657914616979,
+      "13": 0.0888707695228752,
+      "9": 0.09490760174543844,
+      "18": 0.12343084638586088,
+      "8": 0.1701083764865321,
+      "6": 0.171956123167313,
+      "14": 0.17627232422278594,
+      "7": 0.1798483848387371,
+      "5": 0.20031754357760345,
+      "15": 0.21639950024610544,
+      "4": 0.24308862734126224,
+      "19": 0.26224931218857517,
+      "17": 0.2840091414032857,
+      "3": 0.3262419926768745,
+      "20": 0.3521659567528719,
+      "16": 0.3813166444447065,
+      "21": 0.39654804171365976,
+      "22": 0.39897301216773373,
+      "1": 1.1996107028106153,
+      "2": 8.290485000271131
+    }
+  },
+  "status": "complete"
+}

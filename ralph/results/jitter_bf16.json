@@ -1,0 +1,313 @@
+{
+  "run_id": "jitter_qwen25_15b_bf16",
+  "round": 6,
+  "model": "Qwen/Qwen2.5-1.5B",
+  "config": {
+    "dtype": "bfloat16",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "seed": 42,
+    "n_examples_per_task": 300,
+    "batch_shapes": [
+      [
+        16384,
+        32
+      ],
+      [
+        8192,
+        16
+      ],
+      [
+        4096,
+        8
+      ]
+    ],
+    "selection_rule": "fixed explicit layer sets (see per-config `layers`)"
+  },
+  "eval": {
+    "corpus": "wikitext-2-raw-v1",
+    "split": "test"
+  },
+  "purpose": "Replicate the harness-jitter measurement across configs and batch shapes so the noise floor is a DISTRIBUTION, not an n=1 estimate.",
+  "per_config": {
+    "rd_k2:plain_skip": {
+      "layers": [
+        14,
+        16
+      ],
+      "method": "plain_skip",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6833333333333332,
+          "hellaswag": 0.6166666666666667,
+          "piqa": 0.7333333333333333,
+          "arc_easy": 0.7
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6855555555555556,
+          "hellaswag": 0.6233333333333333,
+          "piqa": 0.7366666666666667,
+          "arc_easy": 0.6966666666666667
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6877777777777778,
+          "hellaswag": 0.6266666666666667,
+          "piqa": 0.7366666666666667,
+          "arc_easy": 0.7
+        }
+      },
+      "acc_range_questions": 4,
+      "acc_range_points": 0.4444444444444584,
+      "pairwise_delta_questions": [
+        -2,
+        -4,
+        -2
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k2:depth_ar": {
+      "layers": [
+        14,
+        16
+      ],
+      "method": "depth_ar",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6866666666666665,
+          "hellaswag": 0.6266666666666667,
+          "piqa": 0.7333333333333333,
+          "arc_easy": 0.7
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.69,
+          "hellaswag": 0.6266666666666667,
+          "piqa": 0.7366666666666667,
+          "arc_easy": 0.7066666666666667
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6933333333333334,
+          "hellaswag": 0.6266666666666667,
+          "piqa": 0.7366666666666667,
+          "arc_easy": 0.7166666666666667
+        }
+      },
+      "acc_range_questions": 6,
+      "acc_range_points": 0.6666666666666821,
+      "pairwise_delta_questions": [
+        -3,
+        -6,
+        -3
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k2:depth_ar_ct": {
+      "layers": [
+        14,
+        16
+      ],
+      "method": "depth_ar_ct",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6877777777777778,
+          "hellaswag": 0.6266666666666667,
+          "piqa": 0.7333333333333333,
+          "arc_easy": 0.7033333333333334
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.69,
+          "hellaswag": 0.6266666666666667,
+          "piqa": 0.7333333333333333,
+          "arc_easy": 0.71
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6888888888888888,
+          "hellaswag": 0.6266666666666667,
+          "piqa": 0.7333333333333333,
+          "arc_easy": 0.7066666666666667
+        }
+      },
+      "acc_range_questions": 2,
+      "acc_range_points": 0.22222222222221255,
+      "pairwise_delta_questions": [
+        -2,
+        -1,
+        1
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k4:plain_skip": {
+      "layers": [
+        10,
+        12,
+        14,
+        16
+      ],
+      "method": "plain_skip",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.638888888888889,
+          "hellaswag": 0.51,
+          "piqa": 0.7266666666666667,
+          "arc_easy": 0.68
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6377777777777779,
+          "hellaswag": 0.51,
+          "piqa": 0.7266666666666667,
+          "arc_easy": 0.6766666666666666
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6388888888888888,
+          "hellaswag": 0.5133333333333333,
+          "piqa": 0.7266666666666667,
+          "arc_easy": 0.6766666666666666
+        }
+      },
+      "acc_range_questions": 1,
+      "acc_range_points": 0.11111111111110628,
+      "pairwise_delta_questions": [
+        1,
+        0,
+        -1
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k4:depth_ar": {
+      "layers": [
+        10,
+        12,
+        14,
+        16
+      ],
+      "method": "depth_ar",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6344444444444445,
+          "hellaswag": 0.5133333333333333,
+          "piqa": 0.72,
+          "arc_easy": 0.67
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6377777777777779,
+          "hellaswag": 0.5166666666666667,
+          "piqa": 0.72,
+          "arc_easy": 0.6766666666666666
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6344444444444445,
+          "hellaswag": 0.5133333333333333,
+          "piqa": 0.7133333333333334,
+          "arc_easy": 0.6766666666666666
+        }
+      },
+      "acc_range_questions": 3,
+      "acc_range_points": 0.33333333333334103,
+      "pairwise_delta_questions": [
+        -3,
+        0,
+        3
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k4:depth_ar_ct": {
+      "layers": [
+        10,
+        12,
+        14,
+        16
+      ],
+      "method": "depth_ar_ct",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.64,
+          "hellaswag": 0.5133333333333333,
+          "piqa": 0.7233333333333334,
+          "arc_easy": 0.6833333333333333
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6377777777777779,
+          "hellaswag": 0.5133333333333333,
+          "piqa": 0.7233333333333334,
+          "arc_easy": 0.6766666666666666
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.6333333333333333,
+          "hellaswag": 0.51,
+          "piqa": 0.72,
+          "arc_easy": 0.67
+        }
+      },
+      "acc_range_questions": 6,
+      "acc_range_points": 0.666666666666671,
+      "pairwise_delta_questions": [
+        2,
+        6,
+        4
+      ],
+      "nll_range": 0.0
+    },
+    "dense:dense": {
+      "layers": [],
+      "method": "dense",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.7133333333333334,
+          "hellaswag": 0.6733333333333333,
+          "piqa": 0.7366666666666667,
+          "arc_easy": 0.73
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.7111111111111111,
+          "hellaswag": 0.67,
+          "piqa": 0.7366666666666667,
+          "arc_easy": 0.7266666666666667
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 0.0,
+          "avg_acc": 0.7088888888888888,
+          "hellaswag": 0.6633333333333333,
+          "piqa": 0.7333333333333333,
+          "arc_easy": 0.73
+        }
+      },
+      "acc_range_questions": 4,
+      "acc_range_points": 0.4444444444444584,
+      "pairwise_delta_questions": [
+        2,
+        4,
+        2
+      ],
+      "nll_range": 0.0
+    }
+  },
+  "pooled": {
+    "n_pairwise_comparisons": 21,
+    "max_abs_delta_questions": 6,
+    "mean_abs_delta_questions": 2.4761904761904763,
+    "sd_abs_delta_questions": 1.6218463205644191,
+    "questions_per_config": 900,
+    "max_nll_range_over_all_configs": 0.0
+  },
+  "status": "complete",
+  "notes": "Only the task batch shape varies within a config. Model, dtype, layer set, seed and examples are all held fixed, so any accuracy movement is harness jitter by construction. NLL should not move at all.",
+  "elapsed_sec": 255.16649556159973
+}

@@ -1,0 +1,673 @@
+{
+  "run_id": "jitter_replication",
+  "round": 6,
+  "model": "Qwen/Qwen2.5-0.5B",
+  "config": {
+    "dtype": "float32",
+    "gpu": "NVIDIA GeForce RTX 2080 Ti",
+    "seed": 42,
+    "n_examples_per_task": 100,
+    "batch_shapes": [
+      [
+        16384,
+        32
+      ],
+      [
+        8192,
+        16
+      ],
+      [
+        4096,
+        8
+      ]
+    ],
+    "selection_rule": "fixed explicit layer sets (see per-config `layers`)"
+  },
+  "eval": {
+    "corpus": "wikitext-2-raw-v1",
+    "split": "test"
+  },
+  "purpose": "Replicate the harness-jitter measurement across configs and batch shapes so the noise floor is a DISTRIBUTION, not an n=1 estimate.",
+  "per_config": {
+    "rd_k2:plain_skip": {
+      "layers": [
+        10,
+        13
+      ],
+      "method": "plain_skip",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 2.9849705439382284,
+          "avg_acc": 0.5266666666666667,
+          "hellaswag": 0.44,
+          "piqa": 0.66,
+          "arc_easy": 0.48
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 2.9849705439382284,
+          "avg_acc": 0.5266666666666667,
+          "hellaswag": 0.44,
+          "piqa": 0.66,
+          "arc_easy": 0.48
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 2.9849705439382284,
+          "avg_acc": 0.5266666666666667,
+          "hellaswag": 0.44,
+          "piqa": 0.66,
+          "arc_easy": 0.48
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k2:depth_ar": {
+      "layers": [
+        10,
+        13
+      ],
+      "method": "depth_ar",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 2.9663090297698425,
+          "avg_acc": 0.51,
+          "hellaswag": 0.41,
+          "piqa": 0.64,
+          "arc_easy": 0.48
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 2.9663090297698425,
+          "avg_acc": 0.51,
+          "hellaswag": 0.41,
+          "piqa": 0.64,
+          "arc_easy": 0.48
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 2.9663090297698425,
+          "avg_acc": 0.51,
+          "hellaswag": 0.41,
+          "piqa": 0.64,
+          "arc_easy": 0.48
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k2:depth_ar_ct": {
+      "layers": [
+        10,
+        13
+      ],
+      "method": "depth_ar_ct",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 2.9644063074667844,
+          "avg_acc": 0.52,
+          "hellaswag": 0.43,
+          "piqa": 0.65,
+          "arc_easy": 0.48
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 2.9644063074667844,
+          "avg_acc": 0.52,
+          "hellaswag": 0.43,
+          "piqa": 0.65,
+          "arc_easy": 0.48
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 2.9644063074667844,
+          "avg_acc": 0.52,
+          "hellaswag": 0.43,
+          "piqa": 0.65,
+          "arc_easy": 0.48
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k4:plain_skip": {
+      "layers": [
+        8,
+        10,
+        13,
+        18
+      ],
+      "method": "plain_skip",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 3.4208792660666325,
+          "avg_acc": 0.5233333333333333,
+          "hellaswag": 0.42,
+          "piqa": 0.68,
+          "arc_easy": 0.47
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 3.4208792660666325,
+          "avg_acc": 0.5233333333333333,
+          "hellaswag": 0.42,
+          "piqa": 0.68,
+          "arc_easy": 0.47
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 3.4208792660666325,
+          "avg_acc": 0.5233333333333333,
+          "hellaswag": 0.42,
+          "piqa": 0.68,
+          "arc_easy": 0.47
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k4:depth_ar": {
+      "layers": [
+        8,
+        10,
+        13,
+        18
+      ],
+      "method": "depth_ar",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 3.3909153087894977,
+          "avg_acc": 0.51,
+          "hellaswag": 0.4,
+          "piqa": 0.66,
+          "arc_easy": 0.47
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 3.3909153087894977,
+          "avg_acc": 0.51,
+          "hellaswag": 0.4,
+          "piqa": 0.66,
+          "arc_easy": 0.47
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 3.3909153087894977,
+          "avg_acc": 0.51,
+          "hellaswag": 0.4,
+          "piqa": 0.66,
+          "arc_easy": 0.47
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k4:depth_ar_ct": {
+      "layers": [
+        8,
+        10,
+        13,
+        18
+      ],
+      "method": "depth_ar_ct",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 3.389604718060663,
+          "avg_acc": 0.51,
+          "hellaswag": 0.4,
+          "piqa": 0.66,
+          "arc_easy": 0.47
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 3.389604718060663,
+          "avg_acc": 0.51,
+          "hellaswag": 0.4,
+          "piqa": 0.66,
+          "arc_easy": 0.47
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 3.389604718060663,
+          "avg_acc": 0.51,
+          "hellaswag": 0.4,
+          "piqa": 0.66,
+          "arc_easy": 0.47
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k6:plain_skip": {
+      "layers": [
+        6,
+        8,
+        10,
+        13,
+        15,
+        18
+      ],
+      "method": "plain_skip",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 4.452213280562852,
+          "avg_acc": 0.4566666666666666,
+          "hellaswag": 0.29,
+          "piqa": 0.61,
+          "arc_easy": 0.47
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 4.452213280562852,
+          "avg_acc": 0.4566666666666666,
+          "hellaswag": 0.29,
+          "piqa": 0.61,
+          "arc_easy": 0.47
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 4.452213280562852,
+          "avg_acc": 0.4566666666666666,
+          "hellaswag": 0.29,
+          "piqa": 0.61,
+          "arc_easy": 0.47
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k6:depth_ar": {
+      "layers": [
+        6,
+        8,
+        10,
+        13,
+        15,
+        18
+      ],
+      "method": "depth_ar",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 4.14863556888995,
+          "avg_acc": 0.4366666666666667,
+          "hellaswag": 0.3,
+          "piqa": 0.56,
+          "arc_easy": 0.45
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 4.14863556888995,
+          "avg_acc": 0.4366666666666667,
+          "hellaswag": 0.3,
+          "piqa": 0.56,
+          "arc_easy": 0.45
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 4.14863556888995,
+          "avg_acc": 0.4366666666666667,
+          "hellaswag": 0.3,
+          "piqa": 0.56,
+          "arc_easy": 0.45
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rd_k6:depth_ar_ct": {
+      "layers": [
+        6,
+        8,
+        10,
+        13,
+        15,
+        18
+      ],
+      "method": "depth_ar_ct",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 4.143795886126704,
+          "avg_acc": 0.43333333333333335,
+          "hellaswag": 0.3,
+          "piqa": 0.56,
+          "arc_easy": 0.44
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 4.143795886126704,
+          "avg_acc": 0.43333333333333335,
+          "hellaswag": 0.3,
+          "piqa": 0.56,
+          "arc_easy": 0.44
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 4.143795886126704,
+          "avg_acc": 0.43333333333333335,
+          "hellaswag": 0.3,
+          "piqa": 0.56,
+          "arc_easy": 0.44
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rt_k2:plain_skip": {
+      "layers": [
+        1,
+        21
+      ],
+      "method": "plain_skip",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 6.590019102157285,
+          "avg_acc": 0.3933333333333333,
+          "hellaswag": 0.22,
+          "piqa": 0.54,
+          "arc_easy": 0.42
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 6.590019102157285,
+          "avg_acc": 0.3933333333333333,
+          "hellaswag": 0.22,
+          "piqa": 0.54,
+          "arc_easy": 0.42
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 6.590019102157285,
+          "avg_acc": 0.3933333333333333,
+          "hellaswag": 0.22,
+          "piqa": 0.54,
+          "arc_easy": 0.42
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rt_k2:depth_ar": {
+      "layers": [
+        1,
+        21
+      ],
+      "method": "depth_ar",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 4.436053883570525,
+          "avg_acc": 0.47000000000000003,
+          "hellaswag": 0.43,
+          "piqa": 0.58,
+          "arc_easy": 0.4
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 4.436053883570525,
+          "avg_acc": 0.47000000000000003,
+          "hellaswag": 0.43,
+          "piqa": 0.58,
+          "arc_easy": 0.4
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 4.436053883570525,
+          "avg_acc": 0.47000000000000003,
+          "hellaswag": 0.43,
+          "piqa": 0.58,
+          "arc_easy": 0.4
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rt_k2:depth_ar_ct": {
+      "layers": [
+        1,
+        21
+      ],
+      "method": "depth_ar_ct",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 4.0347493787146815,
+          "avg_acc": 0.45333333333333337,
+          "hellaswag": 0.38,
+          "piqa": 0.53,
+          "arc_easy": 0.45
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 4.0347493787146815,
+          "avg_acc": 0.45333333333333337,
+          "hellaswag": 0.38,
+          "piqa": 0.53,
+          "arc_easy": 0.45
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 4.0347493787146815,
+          "avg_acc": 0.45333333333333337,
+          "hellaswag": 0.38,
+          "piqa": 0.53,
+          "arc_easy": 0.45
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rt_k4:plain_skip": {
+      "layers": [
+        1,
+        5,
+        7,
+        21
+      ],
+      "method": "plain_skip",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 9.36670836535942,
+          "avg_acc": 0.35333333333333333,
+          "hellaswag": 0.27,
+          "piqa": 0.46,
+          "arc_easy": 0.33
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 9.36670836535942,
+          "avg_acc": 0.35333333333333333,
+          "hellaswag": 0.27,
+          "piqa": 0.46,
+          "arc_easy": 0.33
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 9.36670836535942,
+          "avg_acc": 0.35333333333333333,
+          "hellaswag": 0.27,
+          "piqa": 0.46,
+          "arc_easy": 0.33
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rt_k4:depth_ar": {
+      "layers": [
+        1,
+        5,
+        7,
+        21
+      ],
+      "method": "depth_ar",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 5.739106749242267,
+          "avg_acc": 0.36999999999999994,
+          "hellaswag": 0.27,
+          "piqa": 0.46,
+          "arc_easy": 0.38
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 5.739106749242267,
+          "avg_acc": 0.36999999999999994,
+          "hellaswag": 0.27,
+          "piqa": 0.46,
+          "arc_easy": 0.38
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 5.739106749242267,
+          "avg_acc": 0.36999999999999994,
+          "hellaswag": 0.27,
+          "piqa": 0.46,
+          "arc_easy": 0.38
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "rt_k4:depth_ar_ct": {
+      "layers": [
+        1,
+        5,
+        7,
+        21
+      ],
+      "method": "depth_ar_ct",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 5.398241968152568,
+          "avg_acc": 0.37666666666666665,
+          "hellaswag": 0.3,
+          "piqa": 0.48,
+          "arc_easy": 0.35
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 5.398241968152568,
+          "avg_acc": 0.37666666666666665,
+          "hellaswag": 0.3,
+          "piqa": 0.48,
+          "arc_easy": 0.35
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 5.398241968152568,
+          "avg_acc": 0.37666666666666665,
+          "hellaswag": 0.3,
+          "piqa": 0.48,
+          "arc_easy": 0.35
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    },
+    "dense:dense": {
+      "layers": [],
+      "method": "dense",
+      "by_batch_shape": {
+        "tok16384_rows32": {
+          "wikitext2_nll": 2.762618653960071,
+          "avg_acc": 0.5866666666666668,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6
+        },
+        "tok8192_rows16": {
+          "wikitext2_nll": 2.762618653960071,
+          "avg_acc": 0.5866666666666668,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6
+        },
+        "tok4096_rows8": {
+          "wikitext2_nll": 2.762618653960071,
+          "avg_acc": 0.5866666666666668,
+          "hellaswag": 0.48,
+          "piqa": 0.68,
+          "arc_easy": 0.6
+        }
+      },
+      "acc_range_questions": 0,
+      "acc_range_points": 0.0,
+      "pairwise_delta_questions": [
+        0,
+        0,
+        0
+      ],
+      "nll_range": 0.0
+    }
+  },
+  "pooled": {
+    "n_pairwise_comparisons": 48,
+    "max_abs_delta_questions": 0,
+    "mean_abs_delta_questions": 0,
+    "sd_abs_delta_questions": 0.0,
+    "questions_per_config": 300,
+    "max_nll_range_over_all_configs": 0.0
+  },
+  "status": "complete",
+  "notes": "Only the task batch shape varies within a config. Model, dtype, layer set, seed and examples are all held fixed, so any accuracy movement is harness jitter by construction. NLL should not move at all.",
+  "elapsed_sec": 355.13891530036926
+}

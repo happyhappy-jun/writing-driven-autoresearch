@@ -1,0 +1,38 @@
+\section{Related Work}
+\label{sec:related-works}
+
+\paragraph{Layer pruning and skipping.} A large body of work removes Transformer
+blocks outright, differing mainly in the importance score used to choose them:
+angular distance between block boundaries \citep{gromov2024unreasonable}, block
+influence \citep{men2024shortgpt}, structured dropout that trains the model to be
+prunable \citep{fan2020reducing}, and gradient- or activation-based structural
+pruning \citep{ma2023llmpruner, frantar2023sparsegpt, sun2024simple}. Dynamic
+variants route tokens around blocks at inference time
+\citep{raposo2024mixture, elhoushi2024layerskip, schuster2022confident}. These
+methods answer \emph{which} block to drop. Once the choice is made, essentially
+all of them apply the same operator, set the residual update to zero, and it
+is that operator, not the selection rule, that \mname replaces. The two are
+orthogonal: \mname consumes whatever layer set a selection method produces.
+
+\paragraph{Recovering what pruning removes.} Post-pruning repair typically fits a
+map at the boundary of the removed region: a linear transformation between hidden
+states at different depths \citep{din2023jump}, or a learned lens that reads
+predictions out of intermediate states \citep{belrose2023eliciting}. Such a map
+costs $O(d^2)$ parameters and $O(Td^2)$ work, the same order as the block it
+replaces, which erodes the saving that motivated pruning. \mname instead
+predicts from the \emph{preceding update trajectory} rather than from the
+boundary activation, which is what allows the predictor to collapse to one or two
+scalars and $O(Td)$ work.
+
+\paragraph{Depth as a trajectory.} That residual streams evolve smoothly is well
+established: residual networks behave like ensembles of shallow paths
+\citep{veit2016residual}, and residual connections induce iterative refinement of
+a single representation across depth \citep{jastrzebski2018residual}. This
+literature is largely analytical. We take it as an engineering resource: if
+updates lie on a smooth path, the next one is forecastable from the last, and a
+skipped block need not be a hole in the computation.
+
+To our knowledge, \mname is the first layer-skipping method to model the missing
+residual update autoregressively from the preceding depth trajectory using a
+closed-form, per-channel (diagonal) predictor, and, in the same breath, the first to
+show that doing so recovers likelihood without recovering function.

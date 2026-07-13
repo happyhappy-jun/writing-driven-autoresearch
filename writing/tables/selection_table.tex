@@ -1,0 +1,33 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{\textbf{\mname improves recovery under every selection rule.} Fraction of the
+plain-skip NLL damage recovered on Qwen2.5-0.5B at matched skipped-layer sets, for three
+rules for choosing which $k$ blocks to skip. Positive is better; \emph{negative means the
+method is worse than simply dropping the update}. \mname recovers the most damage under
+every rule and both budgets, so it can be applied on top of whichever layer-selection
+method a practitioner already uses; layer selection is not our contribution, and we do not
+propose one. The scalar predictor, by contrast, is catastrophic under the cheapest rule.
+Copy Update is worse than plain skipping everywhere. Best value per column in \textbf{bold}. Hardware and protocol: \Cref{sec:app-protocol}.}
+\label{tab:selection}
+\begin{tabular}{llcc}
+\toprule
+Selection rule & Predictor & $k=2$ & $k=4$ \\
+\multirow{3}{*}{\makecell[l]{Predictability $P_\ell$ \\ \footnotesize(no skipping needed)}}
+  & Copy Update            & $-0.779$ & $-1.800$ \\
+  & Scalar AR(1)           & $-0.745$ & $-0.128$ \\
+  & \textbf{\mname (Ours)} & \textbf{$+0.053$} & \textbf{$+0.194$} \\
+\graymidrule
+\multirow{3}{*}{\makecell[l]{Lowest single-layer \\ \footnotesize damage (dev set)}}
+  & Copy Update            & $-1.736$ & $-2.395$ \\
+  & Scalar AR(1)           & $+0.039$ & $+0.040$ \\
+  & \textbf{\mname (Ours)} & \textbf{$+0.078$} & \textbf{$+0.074$} \\
+\graymidrule
+\multirow{3}{*}{\makecell[l]{Measured recovery \\ \footnotesize(dev set)}}
+  & Copy Update            & $-0.140$ & $-0.686$ \\
+  & Scalar AR(1)           & $+0.166$ & $+0.163$ \\
+  & \textbf{\mname (Ours)} & \textbf{$+0.205$} & \textbf{$+0.247$} \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,7 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Plain skipping assumes a skipped block's residual update is zero. It is not: much of it is
+predictable, and \mname recovers a substantial share of the likelihood skipping destroys, in
+closed form, at 0.64\% of prefill latency. Downstream, significant gains appear only where the
+damage is severe. Repair pays off where pruning bites (\Cref{sec:app-qwen3}).

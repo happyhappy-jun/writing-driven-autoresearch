@@ -1,0 +1,26 @@
+# lobroster environment -- SINGLE SOURCE OF TRUTH.
+# Defined on the master node (/home/lobster) and propagated to every worker
+# by `/lobroster:env-setup`. Never hand-edit a worker's venv: change this
+# file, then re-run env-setup so all four nodes stay identical.
+
+# --- core ---
+torch==2.5.1                 # PyPI wheel bundles CUDA 12.x; works on 2080Ti(sm75) + 3090(sm86)
+transformers==4.46.3
+accelerate==1.1.1
+tokenizers==0.20.3
+safetensors==0.4.5
+
+# --- data / eval ---
+datasets==3.1.0
+evaluate==0.4.3
+
+# --- numerics / analysis (closed-form AR coefficients, R^2, correlations) ---
+numpy==1.26.4
+scipy==1.14.1
+pandas==2.2.3
+
+# --- figures ---
+matplotlib==3.9.2
+
+# --- misc ---
+tqdm==4.67.1
