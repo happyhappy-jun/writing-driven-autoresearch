@@ -28,7 +28,7 @@ everything else exactly as the agents left it:
 - **The integrity tooling** — [verify-phm.py](verify-phm.py), [writing-audit.sh](writing-audit.sh): 795 checks green at submission
 - **The paper** — [writing-main.pdf](writing-main.pdf): *"Depth-AR: Skipping Transformer Layers Without Dropping Their Updates"*, submitted **33 minutes early**. The winning paper and its own git history — 45 commits, **39 of them made by the AI** — live in the paper repo: [happyhappy-jun/depth-ar](https://github.com/happyhappy-jun/depth-ar)
 
-How and why we built it: **[the blog post](TODO-blog-link)**.
+How and why we built it: **[the blog post](https://byungjunyoon.ai/writing-driven-autoresearch/)**.
 
 ## Steal this — run the loop on your own project
 
