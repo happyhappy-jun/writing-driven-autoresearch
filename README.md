@@ -1,17 +1,20 @@
-# Writing-Driven Autoresearch
+# 🏆 1st Place at [Ralphthon @ICML "Auto Research"](https://luma.com/hjuo7auc): $10,000 in OpenAI Credits
 
-[![1st place, Ralphthon@ICML2026](https://img.shields.io/badge/%F0%9F%8F%86_1st_place-Ralphthon%40ICML2026-gold)](https://github.com/happyhappy-jun/depth-ar)
+## Writing-Driven Autoresearch
+
+**By [Woomin Song](https://woominsong.github.io/) and [Byungjun Yoon](https://github.com/happyhappy-jun)**, Team **WooandB** (KAIST · ALIN Lab, advised by Prof. Jinwoo Shin) 🙏
+
+[![🏆 1st place · $10,000 OpenAI credits](https://img.shields.io/badge/%F0%9F%8F%86_1st_place-%2410%2C000_OpenAI_credits-gold)](https://luma.com/hjuo7auc)
 [![Paper: depth-ar](https://img.shields.io/badge/paper-depth--ar-181717?logo=github)](https://github.com/happyhappy-jun/depth-ar)
 [![Final PDF](https://img.shields.io/badge/PDF-writing--main.pdf-b31b1b)](writing-main.pdf)
 
-**Writing-driven autoresearch** — the harness, tooling, and complete run record
-of **WooandB**'s 🏆 **first-place** entry at **Ralphthon@ICML2026**, a hackathon
-where agents produce a research paper end to end with no human in the loop.
-The papers were judged in ICML workshop format by a panel of **11 expert
-reviewers** — ours took first.
+This repository is the harness, tooling, and complete run record behind that
+winning entry: a hackathon where agents produce a research paper end to end,
+with only light high-level human guidance. The papers were judged in ICML
+workshop format by a panel of **11 expert reviewers**, and ours took first.
 
 **Every file in this repository except this README was written by the AI
-scientists themselves** — the plan, the experiment code, the decision ledger,
+scientists themselves**: the plan, the experiment code, the decision ledger,
 the integrity tooling, and the paper. This README is the only human-curated
 document here; everything else is the artifact.
 
@@ -177,12 +180,21 @@ them — that diff *is* Takeaway 3 of the blog post.
 
 ### 5. Co-scientist, not just autonomy
 
-**The agents submitted a complete paper at T+2:27, 33 minutes early.**
-Everything after that is the human-advisor phase: `DECISIONS.md` entries
-prefixed `USER` show high-level feedback ("restructure around the positive
-results", "extend 30–40 minutes, try the Qwen3 family") being executed under
-the same integrity floor. At T+3:43 the writing agent complied with a
-presentation order while refusing the part that would have hidden counted
+**The system produced a complete, plausible paper on its own, and we then
+engaged it with occasional high-level feedback to push the quality further.**
+The science was formally frozen at T+1:32, with every planned artifact measured
+and a full verification pass (10 agents, zero fabricated values) complete, all
+before any human weighed in. The first feedback (logged T+1:49, and it
+explicitly "supersedes freeze") pointed the finished-but-frozen system at
+higher-value directions and a positive-first framing: a cross-token variant, an
+aggressive-skip Pareto sweep, "use the whole fleet." The agents carried it out
+under the standing constraint *"honesty constraints do not move"* (nothing
+measured removed, nothing unsupported claimed). They submitted the paper at
+**T+2:27, 33 minutes early**. The feedback that followed is more of the same
+co-scientist loop: `DECISIONS.md` entries prefixed `USER` ("restructure around
+the positive results", "extend 30 to 40 minutes, try the Qwen3 family") executed
+without ever bending an integrity rule. At **T+3:43** the writing agent complied
+with a presentation order while refusing the part that would have hidden counted
 comparisons: *"prominence yes, suppression no."*
 
 ---
@@ -288,10 +300,12 @@ rewrite of what the data said.
 
 ## Team
 
-**WooandB** — Woomin Song and Byungjun Yoon (KAIST, ALIN Lab, advised by
-Prof. Jinwoo Shin). 🏆 **First place at Ralphthon@ICML2026**, judged by a panel
-of 11 expert reviewers. Thanks to Team Attention for organizing Ralphthon, and
-to the sponsors: OpenAI, Weights & Biases, VESSL AI, DALPHA, and NAVER D2SF.
+**WooandB** is [Woomin Song](https://woominsong.github.io/) and
+[Byungjun Yoon](https://github.com/happyhappy-jun) (KAIST, ALIN Lab, advised by
+Prof. Jinwoo Shin). 🏆 **First place at Ralphthon@ICML2026** in the "Auto
+Research" track, judged by a panel of 11 expert reviewers, winning **$10,000 in
+OpenAI credits**. Thanks to Team Attention for organizing Ralphthon, and to the
+sponsors: OpenAI, Weights & Biases, VESSL AI, DALPHA, and NAVER D2SF.
 
 The winning paper — source, PDF, and the AI's own commit history — is published
 separately at [happyhappy-jun/depth-ar](https://github.com/happyhappy-jun/depth-ar).
