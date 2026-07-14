@@ -24,6 +24,7 @@ This is not a framework to install. It is the run itself — secrets redacted,
 everything else exactly as the agents left it:
 
 - **The harness** — three agent personas ([master.md](master.md), [experiment.md](experiment.md), [writing.md](writing.md)) and the paper-quality specs they were built around
+- **The skills** — [alin-skills/skills/](https://github.com/happyhappy-jun/writing-driven-autoresearch/tree/main/alin-skills/skills): the only two external skills, imported from our lab's internal skill repository — one for coordinating the multi-agent panes via [herdr](https://github.com/ogulcancelik/herdr), one for applying edits to Overleaf via git
 - **The ledger** — [ralph/](ralph/): 136 timestamped decisions, 53 result JSONs, gate calls, pivots
 - **The integrity tooling** — [verify-phm.py](verify-phm.py), [writing-audit.sh](writing-audit.sh): 795 checks green at submission
 - **The paper** — [writing-main.pdf](writing-main.pdf): *"Depth-AR: Skipping Transformer Layers Without Dropping Their Updates"*, submitted **33 minutes early**. The winning paper and its own git history — 45 commits, **39 of them made by the AI** — live in the paper repo: [happyhappy-jun/depth-ar](https://github.com/happyhappy-jun/depth-ar)
